@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194489f2ab22b9d4da8fa28dcfde13bb, type: 3}
+  m_Name: Left Gesture
+  m_EditorClassIdentifier: 
+  _gestureName: Left
+  _sprite: {fileID: 21300000, guid: af2b46d4daa2bf14da8a14fd2ca90eb3, type: 3}

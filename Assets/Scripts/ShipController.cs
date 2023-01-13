@@ -31,5 +31,9 @@ public class ShipController : MonoBehaviour
 
             _speed *= -1;
         }
+
+        Vector3 lookPos = this.transform.position;
+        lookPos.x += _speed * 10;
+        this.transform.LookAt(lookPos);
     }
 }

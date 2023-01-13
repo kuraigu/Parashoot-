@@ -39,7 +39,7 @@ public class DrawingBoard : MonoBehaviour
                 if (_lineDrawer != null) Destroy(_lineDrawer, 0.3f);
                 _lineDrawer = Instantiate(_lineDrawerReference);
                 _initialPosition = Input.mousePosition;
-                _lineDrawer.transform.position = new Vector3(_lineDrawer.transform.position.x, _lineDrawer.transform.position.y, -1f);
+                _lineDrawer.transform.position = new Vector3(_lineDrawer.transform.position.x, _lineDrawer.transform.position.y + 1, 0f);
             }
         }
 

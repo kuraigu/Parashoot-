@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f53fbb970c4ca48973706986536fc7, type: 3}
-  m_Name: Right Gesture
+  m_Script: {fileID: 11500000, guid: a379a9dbb3ec12843a22d804225419c1, type: 3}
+  m_Name: Click Gesture
   m_EditorClassIdentifier: 
-  _gestureName: Right
-  _sprite: {fileID: 21300000, guid: 2e97ba7d1782300469ad70b92d58381c, type: 3}
+  _gestureName: Click
+  _sprite: {fileID: 21300000, guid: 88ce64e578dfe084c81615c308a4723b, type: 3}
   _gesturePoints: []

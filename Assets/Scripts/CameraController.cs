@@ -4,57 +4,47 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    [SerializeField]
+    public float shakeAmount = 0.7f;
+    [SerializeField]
+    public float shakeDuration = 0.5f;
 
-    private bool _allowShake;
-    // Start is called before the first frame update
 
-    private Vector3 _originalPosition;
+    [SerializeField]
+    private Vector3 initialPosition;
 
     void Start()
     {
-        if(GameManager.instance != null)
-        {
-            GameManager.instance.OnEnemyDeath += CameraShakeListener;
-        }
-
-        _originalPosition = transform.position;
-
-        _allowShake = false;
+        initialPosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(_allowShake)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            ShakeCamera();
+            Shake();
         }
     }
 
-    void CameraShakeListener()
+    public void Shake()
     {
-        StartCoroutine(ShakeTimer(1f));
+        InvokeRepeating("BeginShake", 0, 0.01f);
+        Invoke("StopShake", shakeDuration);
     }
 
-    IEnumerator ShakeTimer(float timer)
+    void BeginShake()
     {
-        _allowShake = true;
-        yield return new WaitForSeconds(timer);
-
-        transform.position = _originalPosition;
-        _allowShake = false;
+        if (shakeAmount > 0)
+        {
+            Vector3 camPos = initialPosition + Random.insideUnitSphere * shakeAmount;
+            camPos.z = -10;
+            transform.position = camPos;
+        }
     }
 
-
-    private void ShakeCamera()
+    void StopShake()
     {
-        Vector3 newPos;
-        newPos.x = UnityEngine.Random.Range(-4.0f, 4.0f) + _originalPosition.x;
-        newPos.y = UnityEngine.Random.Range(-4.0f, 4.0f) + _originalPosition.y;
-        newPos.z = _originalPosition.z;
-
-        this.transform.position = Vector3.MoveTowards(transform.position, newPos, 0.5f * Time.deltaTime);
+        CancelInvoke("BeginShake");
+        transform.position = initialPosition;
     }
-
 }

@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.Diagnostics;
 
 public class GestureSO : ScriptableObject
 {
     [SerializeField]
-    private string _gestureName;
+    protected string _gestureName;
 
     [SerializeField]
-    Sprite _sprite;
+    protected Sprite _sprite;
+
+    [SerializeField]
+    protected List<Vector2> _gesturePoints = new List<Vector2>();
 
     public string gestureName
     { get { return _gestureName; } }
@@ -16,7 +21,12 @@ public class GestureSO : ScriptableObject
     public Sprite sprite
     { get { return _sprite; } }
 
-    protected virtual void InvokeEvent()
+    public virtual bool CheckSimilarity(List<Vector2> points)
+    {
+        return false;
+    }
+
+    public virtual void InvokeEvent()
     {
         if(GameManager.instance != null)
         {
@@ -24,8 +34,8 @@ public class GestureSO : ScriptableObject
         }
     }
 
-    public virtual bool CheckSimilarity(Vector2 directionNormalized)
+    public virtual void GeneratePoints()
     {
-        return false;
+
     }
 }

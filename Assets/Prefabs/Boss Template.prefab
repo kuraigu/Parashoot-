@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adca5bd72b04ef4fab259155cd05411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numOfGestures: 9
+  _numOfGestures: 15
   _currentIndex: 0
   _gestureList: []
   _collider: {fileID: 1163809031491826183}
@@ -141,7 +141,6 @@ MonoBehaviour:
   _gesturePanelPosition: {fileID: 8419884780467061866}
   _spawnChance: 100
   _onKillScore: 100
-  _fallSpeed: 0
   _minRotationTo: 0
   _maxRotationTo: 0
 --- !u!54 &8419884779352134643
@@ -153,7 +152,7 @@ Rigidbody:
   m_GameObject: {fileID: 8653694486642011814}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 10
+  m_Drag: 20
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0

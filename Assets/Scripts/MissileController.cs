@@ -35,6 +35,10 @@ public class MissileController : MonoBehaviour
         if(other.gameObject == _target.gameObject)
         {
             Destroy(this.gameObject);
+
+            Camera.main.TryGetComponent(out CameraController camController);
+
+            camController?.Shake();
         }
     }
 

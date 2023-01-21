@@ -5,53 +5,61 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Gesture Variables")]
     [SerializeField]
     private int _numOfGestures;
     [SerializeField]
-    private int _currentIndex;
+    private int _currentIndex = 0;
     [SerializeField]
     private List<GestureSO> _gestureList = new List<GestureSO>();
 
+    [Header("Physics Variables")]
     [SerializeField]
     private Collider _collider;
-
     [SerializeField]
     private Rigidbody _rigidBody;
 
+    [Header("UI Variables")]
     [SerializeField]
     private Canvas _canvas;
 
+    [Header("Gameplay Variables")]
     [SerializeField]
-    private bool _allowGesturesDestroy;
-
+    private bool _allowGesturesDestroy = false;
     [SerializeField]
     private EnemyGesturePanel _gesturePanel;
-
     [SerializeField]
     private Transform _gesturePanelPosition;
-
     [SerializeField]
     private float _spawnChance;
-
     [SerializeField]
     private uint _onKillScore;
 
+    [Header("Ragdoll Variables")]
+    private bool _isGestureSeen = false;
     private bool _isFreeFalling = false;
-
     private bool _isRagdollRotating = false;
-
     private Vector3 _rotationRate;
     private Quaternion _deltaRotation;
     private Vector3 _rotationDestination;
-
     [SerializeField]
     private float _minRotationTo;
     [SerializeField]
     private float _maxRotationTo;
 
+    private bool _isDead = false;
+
     public float spawnChance
     { get { return _spawnChance; } }
 
+    public bool allowGesturesDestroy
+    { get { return _allowGesturesDestroy; } set { _allowGesturesDestroy = value; } }
+
+    public bool isFreeFalling
+    { get { return _isFreeFalling; } }
+
+    public bool isDead
+    { get { return _isDead; } }
 
     // Start is called before the first frame update
     void Start()
@@ -82,8 +90,6 @@ public class Enemy : MonoBehaviour
         {
             GameManager.instance.OnGestureTriggered += OnGestureTriggeredListener;
         }
-
-        _allowGesturesDestroy = false;
     }
 
     private void OnDestroy()
@@ -99,7 +105,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     // Update is called once per frame
     void Update()
     {
@@ -110,6 +115,41 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         RagDollRotate();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("KillZone"))
+        {
+            if (!_isDead)
+            {
+                if (SceneManager.instance != null)
+                {
+                    SceneManager.instance.LoadScene("GameOver");
+                }
+            }
+
+            //FreeFall();
+            //_isDead = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (_gesturePanel != null)
+        {
+            Destroy(_gesturePanel.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("KillZone") && _isDead)
+        {
+            Destroy(this.gameObject, 1f);
+        }
+
+        _isRagdollRotating = false;
+        _rotationRate *= 0;
+
+
     }
 
     private void RagDollRotate()
@@ -133,80 +173,68 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Mortality")) _allowGesturesDestroy = true;
-
-        if (other.CompareTag("KillZone")) FreeFall();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.OnEnemyDeath?.Invoke();
-        }
-
-        if(_gesturePanel != null)
-        {
-            Destroy(_gesturePanel.gameObject);
-        }
-
-        if (collision.gameObject.CompareTag("KillZone")) Destroy(this.gameObject, 1f);
-
-        _isRagdollRotating = false; _isFreeFalling = false;
-        _rotationRate *= 0;
-    }
-
     private void FollowGameObject()
     {
-        if(_gesturePanel != null)
+        // Early exit if the gesture panel is not set
+        if (_gesturePanel == null)
+            return;
+
+        // Get the position of the gesture panel in screen space
+        Vector3 pos = _gesturePanelPosition.position;
+        pos = Camera.main.WorldToScreenPoint(pos);
+        _gesturePanel.transform.position = pos;
+
+        // Check if the gesture panel has gone off-screen
+        if (_gesturePanel.transform.position.y < Camera.main.ViewportToScreenPoint(new Vector3(0, 1, 0)).y && !_isGestureSeen)
         {
-            Vector3 pos = _gesturePanelPosition.position;
-            pos = Camera.main.WorldToScreenPoint(pos);
-            _gesturePanel.transform.position = pos;
+            _isGestureSeen = true;
         }
     }
 
 
     private void OnGestureTriggeredListener(GestureSO gesture)
     {
-        if(_allowGesturesDestroy && _currentIndex < _gestureList.Count)
+        if (_allowGesturesDestroy && _isGestureSeen && _currentIndex < _gestureList.Count)
         {
-            if (gesture.gestureName == _gestureList[_currentIndex].gestureName && _gesturePanel != null)
+            if (gesture.gestureName == _gestureList[_currentIndex].gestureName)
             {
-                _currentIndex++;
-                _gesturePanel.RemoveCurrentGesture();
-
-                if (_currentIndex > _gestureList.Count - 1)
+                if(RecognizerManager.instance != null)
                 {
-                    FreeFall();
-
-                    if(MissileManager.instance != null)
-                    {
-                        MissileManager.instance.SpawnMissile(this.gameObject);
-                    }
+                    RecognizerManager.instance.nothingDetected = 0;
                 }
+
+                _currentIndex++;
+                _gesturePanel?.RemoveCurrentGesture();
             }
+        }
+
+        if (_currentIndex >= _gestureList.Count)
+        {
+            Debug.Log("CurrentIndex is greater than _gestureList.Count");
+
+            MissileManager.instance?.SpawnMissile(this.gameObject);
+            FreeFall();
+            GameManager.instance.OnEnemyDeath?.Invoke();
         }
     }
 
 
     private GestureSO GenerateRandom()
     {
-        int index = UnityEngine.Random.Range(0, RecognizerManager.instance.gestureList.Count);
-
         if (RecognizerManager.instance != null)
         {
-           return RecognizerManager.instance.gestureList[index];
+            int index = UnityEngine.Random.Range(0, RecognizerManager.instance.gestureList.Count);
+            return RecognizerManager.instance.gestureList[index];
         }
-
         return null;
     }
 
 
     private void FreeFall()
     {
+        _isDead = true;
+        Debug.Log("Freefalling");
+
         if(ScoreManager.instance != null)
         {
             ScoreManager.instance.AddScore(_onKillScore);

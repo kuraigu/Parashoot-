@@ -18,13 +18,13 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Spawning Parameters")]
     [SerializeField]
-    private float _timeToSpawn;
-    [SerializeField]
-    private float _minTimeToSpawn;
+    private FreeMatrix.Utils.Range<float> _timeToSpawnEnemy;
     [SerializeField]
     private float _timeChangeDuration;
     [SerializeField]
     private float _timeDecrementAmount;
+    [SerializeField]
+    private FreeMatrix.Utils.Range<uint> _enemyToSpawnPerCycle;
 
     [Header("Chance Parameters")]
     [SerializeField]
@@ -60,7 +60,7 @@ public class EnemyManager : MonoBehaviour
         _spawnState = SpawnState.Enemy;
 
         StartCoroutine(DecrementTimer(_timeChangeDuration));
-        _enemyCoroutine = StartCoroutine(RunTimer(_timeToSpawn));
+        _enemyCoroutine = StartCoroutine(RunTimer(_timeToSpawnEnemy.current));
         _bossCoroutine = StartCoroutine(RunBossTimer(_timeToSpawnBoss));
 
         SortEnemyListByBiggerSpawnChance();
@@ -87,7 +87,7 @@ public class EnemyManager : MonoBehaviour
 
                 if(_boss == null)
                 {
-                    _enemyCoroutine = StartCoroutine(RunTimer(_timeToSpawn));
+                    _enemyCoroutine = StartCoroutine(RunTimer(_timeToSpawnEnemy.current));
                     _bossCoroutine = StartCoroutine(RunBossTimer(_timeToSpawnBoss));
 
                     _spawnState = SpawnState.Enemy;
@@ -178,9 +178,14 @@ public class EnemyManager : MonoBehaviour
             Debug.Log("Awaiting Time Decremention");
             yield return new WaitForSeconds(duration);
 
-            if (_timeToSpawn > _minTimeToSpawn)
+            if (_timeToSpawnEnemy.current <= _timeToSpawnEnemy.min)
             {
                 break;
+            }
+
+            else
+            {
+                _timeToSpawnEnemy.current -= _timeDecrementAmount;
             }
         }
     }
@@ -254,26 +259,32 @@ public class EnemyManager : MonoBehaviour
         // Check if AssetsGameScene is not null and if it has a list of enemies
         if (AssetsGameScene.instance != null && AssetsGameScene.instance.enemy.enemyList != null)
         {
-            // Create an instance of the enemy using the GetBySpawnChance method
-            Enemy enemy = Instantiate(GetBySpawnChance());
+            // Randomizes the number of enemy to spawn per spawning cycle
+            uint numOfEnemiesToSpawn = (uint)UnityEngine.Random.Range(_enemyToSpawnPerCycle.min, _enemyToSpawnPerCycle.max);
 
-            // Check if the enemy was instantiated successfully
-            if (enemy != null)
+            for(uint i = 0; i < numOfEnemiesToSpawn; i++)
             {
-                // Add the enemy to the list and set its position
-                _enemyList.Add(enemy);
-                _enemyList.Last().transform.position = GenerateRandomPos();
-                _lastEnemyXPosition = _enemyList.Last().transform.position.x;
-                //_enemyList.Last().gameObject.TryGetComponent<Rigidbody>(out Rigidbody rigidBody);
-                //rigidBody.drag = _enemyFallDrag;
+                // Create an instance of the enemy using the GetBySpawnChance method
+                Enemy enemy = Instantiate(GetBySpawnChance(), Vector3.zero, Quaternion.identity);
+
+                // Check if the enemy was instantiated successfully
+                if (enemy != null)
+                {
+                    // Add the enemy to the list and set its position
+                    _enemyList.Add(enemy);
+                    _enemyList.Last().transform.position = GenerateRandomPos();
+                    _lastEnemyXPosition = _enemyList.Last().transform.position.x;
+                    //_enemyList.Last().gameObject.TryGetComponent<Rigidbody>(out Rigidbody rigidBody);
+                    //rigidBody.drag = _enemyFallDrag;
 
 
-                // Check if this is the first enemy in the list
-                //if (_enemyList.Count == 1)
-                //{
+                    // Check if this is the first enemy in the list
+                    //if (_enemyList.Count == 1)
+                    //{
                     // Allow gestures to be destroyed for the first enemy
-                    _enemyList.Last().allowGesturesDestroy = true; 
-                //}
+                    _enemyList.Last().allowGesturesDestroy = true;
+                    //}
+                }
             }
         }
     }

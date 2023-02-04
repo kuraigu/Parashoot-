@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Enemy : MonoBehaviour
     private int _currentIndex = 0;
     [SerializeField]
     private List<GestureSO> _gestureList = new List<GestureSO>();
+
+    [Header("Animation")]
+    [SerializeField] private Animator _animator;
 
     [Header("Physics Variables")]
     [SerializeField]
@@ -47,6 +51,18 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _maxRotationTo;
 
+    [Header("VFX")]
+    [SerializeField] private VisualEffect _hitGroundExplosion;
+
+    [Header("Distance Indicator")]
+    [SerializeField] private LineRenderer _lineRenderer;
+    private LineRenderer _lineRendererActive;
+    [SerializeField] private float _distanceToGround;
+    [SerializeField] private LayerMask _distanceToGroundLayerMask;
+
+    [Header("MISC")]
+    [SerializeField] private GameObject _parachute;
+
     private bool _isDead = false;
 
     public float spawnChance
@@ -64,6 +80,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if(AssetsGameScene.instance != null)
         {
             if(AssetsGameScene.instance.ui.canvas != null)
@@ -90,25 +107,30 @@ public class Enemy : MonoBehaviour
         {
             GameManager.instance.OnGestureTriggered += OnGestureTriggeredListener;
         }
+
+        if(_animator != null) _animator.Play("Idle");
     }
 
     private void OnDestroy()
     { 
-        if(_gesturePanel != null)
-        {
-            Destroy(_gesturePanel);
-        }
+       SafeDestroyInstatiated();
 
         if(GameManager.instance != null)
         {
             GameManager.instance.OnGestureTriggered -= OnGestureTriggeredListener;
         }
+
+        Camera.main.TryGetComponent(out CameraController camController);
+
+        camController?.Shake();
     }
 
     // Update is called once per frame
     void Update()
     {
         FollowGameObject();
+
+        DetectGroundDistance();
     }
 
 
@@ -134,6 +156,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void SafeDestroyInstatiated()
+    {
+        if(_gesturePanel != null)
+        {
+            Destroy(_gesturePanel.gameObject);
+        }
+
+        if(_lineRendererActive != null)
+        {
+            Destroy(_lineRendererActive.gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (_gesturePanel != null)
@@ -143,7 +178,15 @@ public class Enemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("KillZone") && _isDead)
         {
-            Destroy(this.gameObject, 1f);
+            _isFreeFalling = false;
+            Destroy(this.gameObject, 0.1f);
+        }
+
+        if(_hitGroundExplosion != null && _isDead)
+        {
+            _hitGroundExplosion = Instantiate(_hitGroundExplosion);
+            _hitGroundExplosion.transform.position = this.transform.position;
+            Destroy(_hitGroundExplosion.gameObject, 2);
         }
 
         _isRagdollRotating = false;
@@ -232,6 +275,7 @@ public class Enemy : MonoBehaviour
 
     private void FreeFall()
     {
+        
         _isDead = true;
         Debug.Log("Freefalling");
 
@@ -256,6 +300,45 @@ public class Enemy : MonoBehaviour
             GameManager.instance.OnGestureTriggered -= OnGestureTriggeredListener;
         }
 
+        if(_parachute != null)
+        {
+            _parachute.SetActive(false);
+        }
+
         _isFreeFalling = true;
+
+        if(_animator != null) _animator.SetBool("isFreeFalling", true);
+    }
+
+    private void DetectGroundDistance()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, _distanceToGround, _distanceToGroundLayerMask) && !_isDead)
+        {
+            //Debug.Log("Trying to detect ground distance");
+            if(hit.collider.CompareTag("KillZone"))
+            {
+                //Debug.Log("Ground distance detected");
+                
+                if(Vector3.Distance(this.transform.position, hit.collider.transform.position) <= _distanceToGround)
+                {
+                    // Show the line renderer
+                    if (_lineRendererActive == null)
+                    {
+                        _lineRendererActive = Instantiate(_lineRenderer);
+
+                        _lineRendererActive.SetPosition(0, transform.position + Vector3.down);
+                        _lineRendererActive.SetPosition(1, transform.position + Vector3.down);
+                    }
+                    _lineRendererActive.SetPosition(0, transform.position + Vector3.down);
+                    _lineRendererActive.SetPosition(1, Vector3.MoveTowards(_lineRendererActive.GetPosition(1), hit.point, Time.deltaTime * 10f));
+                }
+            }
+        }
+
+        if(_isDead && _lineRendererActive != null)
+        {
+            Destroy(_lineRendererActive.gameObject);
+        }
     }
 }

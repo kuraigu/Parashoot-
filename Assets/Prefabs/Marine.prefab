@@ -17,15 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7166748457196832281, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7166748457196832281, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7166748457196832281, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7166748457196832281, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_LocalPosition.x
@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277780427517370870, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Drag
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7277780427517370870, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_AngularDrag
@@ -111,6 +111,10 @@ PrefabInstance:
       propertyPath: _numOfGestures
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7290923904814597209, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.924
+      objectReference: {fileID: 0}
     - target: {fileID: 7511642905861921955, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Name
       value: Marine
@@ -125,19 +129,23 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: dcefbfcfaae803f49a5ba19642ce00f7, type: 2}
     - target: {fileID: 9199584069394981915, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Height
-      value: 2
+      value: 1.6247712
       objectReference: {fileID: 0}
     - target: {fileID: 9199584069394981915, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 0.16847731
+      objectReference: {fileID: 0}
+    - target: {fileID: 9199584069394981915, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
+      propertyPath: m_Center.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9199584069394981915, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Center.y
-      value: 0
+      value: 0.06475538
       objectReference: {fileID: 0}
     - target: {fileID: 9199584069394981915, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Center.z
-      value: 0
+      value: -0.041420475
       objectReference: {fileID: 0}
     - target: {fileID: 9199584069394981915, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Material

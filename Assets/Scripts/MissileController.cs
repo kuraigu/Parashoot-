@@ -50,7 +50,7 @@ public class MissileController : MonoBehaviour
             GameObject explosion = Instantiate(_explosionEffect.gameObject);
 
             explosion.transform.position = this.transform.position;
-            Destroy(explosion, 2);
+            Destroy(explosion.gameObject, 2);
         }
     }
 

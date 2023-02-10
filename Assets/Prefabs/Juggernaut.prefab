@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277780427517370873, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: _numOfGestures
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7290923904814597209, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_LocalPosition.y

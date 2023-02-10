@@ -23,6 +23,9 @@ public class RecognizerManager : MonoBehaviour
     [SerializeField]
     private float _disableRecognitionDuration;
 
+    [SerializeField]
+    private int _incorrectGesturesThreshold;
+
     private bool _allowGestures;
 
     private Coroutine _jamCoroutine;
@@ -70,11 +73,10 @@ public class RecognizerManager : MonoBehaviour
                 }
             }
 
-            if (_nothingDetected >= 3)
+            if (_nothingDetected >= _incorrectGesturesThreshold)
             {
                 DisableRecognition();
                 _jamCoroutine = StartCoroutine(AutomaticReenableTimer(_disableRecognitionDuration));
-                Debug.Log("NOTHING DETECTED FOR THREE TIMES!");
             }
         }
     }

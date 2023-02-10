@@ -19,4 +19,10 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
+
+
+    public void LoadSceneAsync(string sceneName)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+    }
 }

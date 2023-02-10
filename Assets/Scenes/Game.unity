@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 2160}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1465,6 +1465,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df5f07af489a9de4cbdff9e11a25a70f, type: 2}
   _nothingDetected: 0
   _disableRecognitionDuration: 1.5
+  _incorrectGesturesThreshold: 2
 --- !u!1 &911330935
 GameObject:
   m_ObjectHideFlags: 0

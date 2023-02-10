@@ -128,6 +128,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 0}
-  _velocity: 50
+  _velocity: 25
   _rigidBody: {fileID: 147366606310363379}
   _explosionEffect: {fileID: 3202466794814046812, guid: caefba5d923c5e8459e429d87760441a, type: 3}

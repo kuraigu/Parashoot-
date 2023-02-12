@@ -16,8 +16,13 @@ public class MissileController : MonoBehaviour
 
     [SerializeField]
     private VisualEffect _explosionEffect;
+    
 
     private bool _allowFollow = false;
+
+    void Start()
+    {
+    }
 
     // Update is called once per frame
     void Update()
@@ -52,6 +57,7 @@ public class MissileController : MonoBehaviour
             explosion.transform.position = this.transform.position;
             Destroy(explosion.gameObject, 2);
         }
+
     }
 
     public void SetTarget(GameObject target)
@@ -59,6 +65,7 @@ public class MissileController : MonoBehaviour
         _target = target;
     }
     
+
 
     public void FollowTarget()
     {
@@ -76,4 +83,6 @@ public class MissileController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+
 }

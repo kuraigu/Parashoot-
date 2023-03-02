@@ -16,7 +16,7 @@ public class ClickGesture : GestureSO
             return true;
         }
 
-        Debug.Log("Not " + _gestureName);
+        DebugHandler.Log("Not " + _gestureName);
         return false;
     }
 }

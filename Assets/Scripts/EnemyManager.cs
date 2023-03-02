@@ -34,6 +34,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private float _timeToSpawnBoss;
 
+    [Header("MISC")]
+    [SerializeField]
+    private bool _allowPlayerDeath;
     [SerializeField]
     private SpawnState _spawnState;
 
@@ -46,12 +49,23 @@ public class EnemyManager : MonoBehaviour
     private Coroutine _enemyCoroutine;
     private Coroutine _bossCoroutine;
 
+    [SerializeField] private GameObject _gameOverUI;
+
     public enum SpawnState
     {
         None, 
         Enemy, 
         Boss
     }
+
+    public static EnemyManager instance
+    {get {return _instance;}}
+
+    public bool allowPlayerDeath
+    {get {return _allowPlayerDeath;}}
+
+    public GameObject gameOverUI
+    {get {return _gameOverUI;}}
 
     private void Awake()
     {
@@ -60,8 +74,8 @@ public class EnemyManager : MonoBehaviour
         _spawnState = SpawnState.Enemy;
 
         StartCoroutine(DecrementTimer(_timeChangeDuration));
-        _enemyCoroutine = StartCoroutine(RunTimer(_timeToSpawnEnemy.current));
-        _bossCoroutine = StartCoroutine(RunBossTimer(_timeToSpawnBoss));
+        _enemyCoroutine = StartCoroutine(RunTimer());
+        _bossCoroutine = StartCoroutine(RunBossTimer());
 
         SortEnemyListByBiggerSpawnChance();
         GetTotalSpawnChance();
@@ -85,15 +99,41 @@ public class EnemyManager : MonoBehaviour
 
             case SpawnState.Boss:
 
-                if(_boss == null)
+                if(_boss == null || !_boss.gameObject.activeSelf)
                 {
-                    _enemyCoroutine = StartCoroutine(RunTimer(_timeToSpawnEnemy.current));
-                    _bossCoroutine = StartCoroutine(RunBossTimer(_timeToSpawnBoss));
+                    _enemyCoroutine = StartCoroutine(RunTimer());
+                    _bossCoroutine = StartCoroutine(RunBossTimer());
 
                     _spawnState = SpawnState.Enemy;
                 }
 
                 break;
+        }
+    }
+
+    public void ClearAllEnemies()
+    {
+        if(_enemyList != null)
+        {
+            foreach(Enemy enemy in _enemyList)
+            {
+                if(enemy!= null) Destroy(enemy.gameObject);
+            }
+
+            _enemyList.Clear();
+
+            if(_boss != null) Destroy(_boss.gameObject);
+
+            StopCoroutine(_enemyCoroutine);
+            StopCoroutine(_bossCoroutine);
+
+            _enemyCoroutine = StartCoroutine(RunTimer());
+            _bossCoroutine = StartCoroutine(RunBossTimer());
+        }
+
+        if(RecognizerManager.instance != null)
+        {
+            RecognizerManager.instance.DisallowJamming();
         }
     }
 
@@ -153,11 +193,11 @@ public class EnemyManager : MonoBehaviour
     /// <param name="timer">The duration of the timer in seconds</param>
     /// <returns>An enumerator that can be used in a Coroutine</returns>
     /// <author>Innoh Reloza</author>
-    private IEnumerator RunTimer(float timer)
+    private IEnumerator RunTimer()
     {
         while(true)
         {
-            yield return new WaitForSeconds(timer);
+            yield return new WaitForSeconds(_timeToSpawnEnemy.current);
 
             SpawnEnemy();
         }
@@ -175,7 +215,7 @@ public class EnemyManager : MonoBehaviour
 
         while (true)
         {
-            Debug.Log("Awaiting Time Decremention");
+            DebugHandler.Log("Awaiting Time Decremention");
             yield return new WaitForSeconds(duration);
 
             if (_timeToSpawnEnemy.current <= _timeToSpawnEnemy.min)
@@ -196,10 +236,10 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     /// <param name="timer">The amount of time to wait before spawning the boss.</param>
     /// <returns></returns>
-    private IEnumerator RunBossTimer(float timer)
+    private IEnumerator RunBossTimer()
     {
         // Wait for the specified amount of time
-        yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(_timeToSpawnBoss);
 
         StopCoroutine(_enemyCoroutine);
         StopCoroutine(_bossCoroutine);

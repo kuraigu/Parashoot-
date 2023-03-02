@@ -25,7 +25,7 @@ public class CircleGesture : GestureSO
         _gesturePoints.Add(new Vector2(47, 47));
         _gesturePoints.Add(new Vector2(48, 49));
         _gesturePoints.Add(new Vector2(50, 50));
-
-        Debug.Log("Done Generating");
+    
+        DebugHandler.Log("Done Generating");
     }
 }

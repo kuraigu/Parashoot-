@@ -25,15 +25,15 @@ public class RightGesture : GestureSO
             {
                 if (totalDirections.normalized.y <= 0.5f && totalDirections.y >= -0.5f)
                 {
-                    Debug.Log(_gestureName + " detected");
-                    Debug.Log("Direction is " + totalDirections.normalized);
+                    DebugHandler.Log(_gestureName + " detected");
+                    DebugHandler.Log("Direction is " + totalDirections.normalized);
                     return true;
                 }
             }
         }
 
-        Debug.Log("Direction is " + totalDirections.normalized);
-        Debug.Log("Not " + _gestureName);
+        DebugHandler.Log("Direction is " + totalDirections.normalized);
+        DebugHandler.Log("Not " + _gestureName);
         return false;
     }
 }

@@ -22,7 +22,7 @@ public class LineDrawer : MonoBehaviour
             if(_pointList.Count == 0)
             {
                 SetPoint(position);
-                Debug.Log("No points exist, creating new one");
+                DebugHandler.Log("No points exist, creating new one");
 
                 return;
             }
@@ -55,7 +55,7 @@ public class LineDrawer : MonoBehaviour
             _lineRenderer.positionCount = _pointList.Count;
             _lineRenderer.SetPosition(_pointList.Count - 1, point);
 
-            Debug.Log("Setting new point!");
+            DebugHandler.Log("Setting new point!");
         }
     }
 }

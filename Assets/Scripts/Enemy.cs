@@ -65,6 +65,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Renderer _parachuteRenderer;
     [SerializeField] private float _fadeSpeed;
 
+    [SerializeField] private List<Renderer> _childRendererList = new List<Renderer>();
+
     private bool _isDead = false;
 
     public float spawnChance
@@ -88,7 +90,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         if (AssetsGameScene.instance != null)
         {
             if (AssetsGameScene.instance.ui.canvas != null)
@@ -127,10 +128,6 @@ public class Enemy : MonoBehaviour
         {
             GameManager.instance.OnGestureTriggered -= OnGestureTriggeredListener;
         }
-
-        Camera.main.TryGetComponent(out CameraController camController);
-
-        camController?.Shake();
     }
 
     // Update is called once per frame
@@ -153,9 +150,23 @@ public class Enemy : MonoBehaviour
         {
             if (!_isDead)
             {
-                if (SceneManager.instance != null)
+                if (SceneManager.instance != null && EnemyManager.instance != null)
                 {
-                    SceneManager.instance.LoadScene("GameOver");
+                    if (EnemyManager.instance.allowPlayerDeath)
+                    {
+                        //SceneManager.instance.LoadScene("GameOver");
+                        //if(GameManager.instance != null) GameManager.instance.Retry();
+                        if (EnemyManager.instance.gameOverUI != null && GameManager.instance != null)
+                        {
+                            GameManager.instance.Pause();
+                            EnemyManager.instance.gameOverUI.SetActive(true);
+                        }
+                    }
+
+                    else
+                    {
+                        FreeFall();
+                    }
                 }
             }
 
@@ -168,12 +179,14 @@ public class Enemy : MonoBehaviour
     {
         if (_gesturePanel != null)
         {
-            Destroy(_gesturePanel.gameObject);
+            Destroy(_gesturePanel.gameObject, 5);
+            _gesturePanel.gameObject.SetActive(false);
         }
 
         if (_lineRendererActive != null)
         {
-            Destroy(_lineRendererActive.gameObject);
+            Destroy(_lineRendererActive.gameObject, 5);
+            _lineRendererActive.gameObject.SetActive(false);
         }
     }
 
@@ -187,15 +200,23 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("KillZone") && _isDead)
         {
             _isFreeFalling = false;
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+
+            Camera.main.TryGetComponent(out CameraController camController);
+
+            if (camController != null) camController.Shake();
+
+            StartCoroutine(BurnChildren());
+
+            if (_hitGroundExplosion != null && _isDead)
+            {
+                _hitGroundExplosion = Instantiate(_hitGroundExplosion);
+                _hitGroundExplosion.transform.position = this.transform.position;
+                Destroy(_hitGroundExplosion.gameObject, 2);
+            }
         }
 
-        if (_hitGroundExplosion != null && _isDead)
-        {
-            _hitGroundExplosion = Instantiate(_hitGroundExplosion);
-            _hitGroundExplosion.transform.position = this.transform.position;
-            Destroy(_hitGroundExplosion.gameObject, 2);
-        }
+
 
         _isRagdollRotating = false;
         _rotationRate *= 0;
@@ -239,6 +260,10 @@ public class Enemy : MonoBehaviour
         if (_gesturePanel.transform.position.y < Camera.main.ViewportToScreenPoint(new Vector3(0, 1, 0)).y && !_isGestureSeen)
         {
             _isGestureSeen = true;
+            if (RecognizerManager.instance != null)
+            {
+                RecognizerManager.instance.AllowJamming();
+            }
         }
     }
 
@@ -251,7 +276,7 @@ public class Enemy : MonoBehaviour
             {
                 if (RecognizerManager.instance != null)
                 {
-                    RecognizerManager.instance.nothingDetected = 0;
+                    RecognizerManager.instance.hasGestureDetected = true;
                 }
 
                 _currentIndex++;
@@ -261,7 +286,9 @@ public class Enemy : MonoBehaviour
 
         if (_currentIndex >= _gestureList.Count)
         {
-            Debug.Log("CurrentIndex is greater than _gestureList.Count");
+            DebugHandler.Log("CurrentIndex is greater than _gestureList.Count");
+
+            if (_gesturePanel != null) _gesturePanel.gameObject.SetActive(false);
 
             MissileManager.instance?.SpawnMissile(this.gameObject);
             FreeFall();
@@ -285,7 +312,7 @@ public class Enemy : MonoBehaviour
     {
 
         _isDead = true;
-        Debug.Log("Freefalling");
+        DebugHandler.Log("Freefalling");
 
         if (ScoreManager.instance != null)
         {
@@ -308,7 +335,7 @@ public class Enemy : MonoBehaviour
             GameManager.instance.OnGestureTriggered -= OnGestureTriggeredListener;
         }
 
-        if(_parachuteRenderer != null)
+        if (_parachuteRenderer != null)
         {
             StartCoroutine(BurnParachute());
         }
@@ -323,10 +350,10 @@ public class Enemy : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, _distanceToGround, _distanceToGroundLayerMask) && !_isDead)
         {
-            //Debug.Log("Trying to detect ground distance");
+            //DebugHandler.Log("Trying to detect ground distance");
             if (hit.collider.CompareTag("KillZone"))
             {
-                //Debug.Log("Ground distance detected");
+                //DebugHandler.Log("Ground distance detected");
 
                 if (Vector3.Distance(this.transform.position, hit.collider.transform.position) <= _distanceToGround)
                 {
@@ -353,22 +380,68 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator BurnParachute()
     {
-        if(_parachuteRenderer != null)
+        if (_parachuteRenderer == null) yield break;
+
+        float noiseStep = _parachuteRenderer.material.GetFloat("_Noise_Step");
+
+        while (noiseStep > 0)
         {
-            
-            float noiseStep = _parachuteRenderer.material.GetFloat("_Noise_Step");
+            noiseStep -= _fadeSpeed * Time.deltaTime;
+            _parachuteRenderer.material.SetFloat("_Noise_Step", noiseStep);
 
-            while (noiseStep > 0)
-            {
-                noiseStep -= _fadeSpeed * Time.deltaTime;
-                _parachuteRenderer.material.SetFloat("_Noise_Step", noiseStep);
-                yield return null;
-        }
+            yield return null;
         }
 
-        if(_parachute != null)
+        _parachuteRenderer.material.SetFloat("_Noise_Step", 0f);
+
+        if (_parachute != null && _parachute.activeSelf)
         {
             _parachute.SetActive(false);
         }
+    }
+
+
+    private IEnumerator BurnChildren()
+    {
+        if (_childRendererList == null || _childRendererList.Count == 0) yield break;
+
+        float maxNoiseStep = 0;
+        foreach (Renderer renderer in _childRendererList)
+        {
+            if (renderer != null)
+            {
+                float noiseStep = renderer.material.GetFloat("_Noise_Step");
+                if (noiseStep > maxNoiseStep)
+                {
+                    maxNoiseStep = noiseStep;
+                }
+            }
+        }
+
+        while (maxNoiseStep > 0)
+        {
+            foreach (Renderer renderer in _childRendererList)
+            {
+                if (renderer != null)
+                {
+                    float noiseStep = renderer.material.GetFloat("_Noise_Step");
+                    noiseStep -= _fadeSpeed * Time.deltaTime;
+                    if (noiseStep < 0)
+                    {
+                        noiseStep = 0;
+                    }
+                    renderer.material.SetFloat("_Noise_Step", noiseStep);
+                }
+            }
+            maxNoiseStep -= _fadeSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        if (gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+        }
+
+        Destroy(gameObject, 10);
     }
 }

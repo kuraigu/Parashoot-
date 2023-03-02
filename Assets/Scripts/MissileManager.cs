@@ -31,6 +31,7 @@ public class MissileManager : MonoBehaviour
             float yPos = UnityEngine.Random.Range(0.0f, 1.0f);
             // convert the viewport coordinates to world coordinates
             newPos = Camera.main.ViewportToWorldPoint(new Vector3(xPos, yPos, -10f));
+            newPos.z = 5f;
             //set the position of the new missile
             newMissile.transform.position = newPos;
             // get the missile controller component

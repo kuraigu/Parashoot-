@@ -1,0 +1,239 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2023-03-02 17:18:34
+count workspace : h:\Development  Tasks\Unity Projects\Parashoot!
+total files : 201
+total code lines : 94705
+total comment lines : 324
+total blank lines : 1608
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |        .csproj|          47850|              0|              0|     51|
+   |      .lighting|             64|              0|              0|  0.068|
+   |           .vfx|          19159|              0|              0|     20|
+   |               |             63|              6|             13|  0.067|
+   |.shadersubgraph|            560|              0|             20|   0.59|
+   |   .shadergraph|          10857|              0|            382|     11|
+   |          .json|            690|              0|              1|   0.73|
+   |        .shader|           2018|             87|            544|    2.1|
+   |         .cginc|            323|             58|             83|   0.34|
+   |           .txt|            660|              2|             18|   0.70|
+   |            .cs|           1950|            168|            461|    2.1|
+   |          .dwlt|           4143|              0|              0|    4.4|
+   |      .settings|             66|              0|              0|  0.070|
+   |    .controller|            248|              0|              0|   0.26|
+   |        .asmdef|             13|              0|              1|  0.014|
+   |          .anim|            368|              0|              0|   0.39|
+   |           .api|              0|              3|              0|    0.0|
+   |           .xsd|           4462|              0|              0|    4.7|
+   |           .sln|            233|              0|              0|   0.25|
+   |            .md|              1|              0|              1| 0.0011|
+   |          .lock|              0|              0|              0|    0.0|
+   |           .log|            977|              0|             84|    1.0|
+   -------------------------------------------------------------------------
+.gitattributes, code is 2, comment is 0, blank is 0.
+.gitignore, code is 56, comment is 6, blank is 12.
+.vs\Parashoot!\FileContentIndex\15e93e6c-1b1a-4392-9352-4d7d117d86d3.vsidx, it is a binary file.
+.vs\Parashoot!\FileContentIndex\2a6b5430-f057-4120-9fdf-6670834897e7.vsidx, it is a binary file.
+.vs\Parashoot!\FileContentIndex\a9f300b3-7e28-4888-aab5-f289d97f4248.vsidx, it is a binary file.
+.vs\Parashoot!\FileContentIndex\c3ff6d7d-37ef-4157-a530-b28cfcee1c9c.vsidx, it is a binary file.
+.vs\Parashoot!\FileContentIndex\read.lock, code is 0, comment is 0, blank is 0.
+.vs\Parashoot!\v17\HierarchyCache.v1.txt, code is 622, comment is 0, blank is 0.
+.vsconfig, code is 5, comment is 0, blank is 1.
+Assembly-CSharp-Editor.csproj, code is 944, comment is 0, blank is 0.
+Assembly-CSharp.csproj, code is 914, comment is 0, blank is 0.
+Assets\Animations\UI\Image.controller, code is 72, comment is 0, blank is 0.
+Assets\Animations\UI\PanelExpand.anim, code is 169, comment is 0, blank is 0.
+Assets\Animations\UI\PanelGenericAnimation.controller, code is 72, comment is 0, blank is 0.
+Assets\Animations\UI\TitleCircleRotate.anim, code is 199, comment is 0, blank is 0.
+Assets\Editor\MobileDependencyResolverInstallerLp.cs, code is 107, comment is 1, blank is 17.
+Assets\Editor\MobileDependencyResolverLP.Installer.Editor.api, code is 0, comment is 3, blank is 0.
+Assets\Editor\MobileDependencyResolverLP.Installer.Editor.asmdef, code is 13, comment is 0, blank is 1.
+Assets\marine.controller, code is 104, comment is 0, blank is 0.
+Assets\Materials\BurnSubGraph.shadersubgraph, code is 560, comment is 0, blank is 20.
+Assets\Materials\DottedLine.shadergraph, code is 1727, comment is 0, blank is 64.
+Assets\Materials\EnemyMaterials\EnemyShader.shadergraph, code is 3041, comment is 0, blank is 109.
+Assets\Materials\EnvironmentMaterials\Water.shadergraph, code is 2171, comment is 0, blank is 74.
+Assets\Materials\New Lighting Settings.lighting, code is 64, comment is 0, blank is 0.
+Assets\MobileDependencyResolver\Editor\mobile-dependency-resolver.txt, code is 4, comment is 0, blank is 0.
+Assets\Prefabs\platform.blend, it is a binary file.
+Assets\Prefabs\VFX\Explosion.vfx, code is 7426, comment is 0, blank is 0.
+Assets\Prefabs\VFX\HitGround.vfx, code is 4011, comment is 0, blank is 0.
+Assets\Scenes\Game\Lightmap-0_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-10_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-11_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-12_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-13_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-14_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-1_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-2_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-3_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-4_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-5_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-6_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-7_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-8_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\Lightmap-9_comp_light.exr, it is a binary file.
+Assets\Scenes\Game\ReflectionProbe-0.exr, it is a binary file.
+Assets\Scripts\AssetsGameScene.cs, code is 41, comment is 0, blank is 12.
+Assets\Scripts\CameraController.cs, code is 42, comment is 0, blank is 8.
+Assets\Scripts\CircleGesture.cs, code is 29, comment is 0, blank is 2.
+Assets\Scripts\CursorManager.cs, code is 25, comment is 0, blank is 7.
+Assets\Scripts\DataManager.cs, code is 56, comment is 9, blank is 12.
+Assets\Scripts\DebugHandler.cs, code is 23, comment is 0, blank is 3.
+Assets\Scripts\DrawingBoard.cs, code is 132, comment is 8, blank is 27.
+Assets\Scripts\Enemy.cs, code is 347, comment is 13, blank is 87.
+Assets\Scripts\EnemyGesturePanel.cs, code is 48, comment is 24, blank is 8.
+Assets\Scripts\EnemyManager.cs, code is 229, comment is 68, blank is 70.
+Assets\Scripts\GameManager.cs, code is 48, comment is 15, blank is 10.
+Assets\Scripts\Gestures\ClickGesture.cs, code is 19, comment is 0, blank is 3.
+Assets\Scripts\Gestures\DownGesture.cs, code is 32, comment is 0, blank is 7.
+Assets\Scripts\Gestures\GestureSO.cs, code is 32, comment is 0, blank is 9.
+Assets\Scripts\Gestures\LeftGesture.cs, code is 32, comment is 0, blank is 6.
+Assets\Scripts\Gestures\RightGesture.cs, code is 32, comment is 0, blank is 7.
+Assets\Scripts\Gestures\UpGesture.cs, code is 32, comment is 0, blank is 7.
+Assets\Scripts\LineDrawer.cs, code is 50, comment is 0, blank is 11.
+Assets\Scripts\MissileController.cs, code is 61, comment is 1, blank is 22.
+Assets\Scripts\MissileManager.cs, code is 33, comment is 8, blank is 7.
+Assets\Scripts\MortalityBoxController.cs, code is 18, comment is 1, blank is 3.
+Assets\Scripts\Raycaster.cs, code is 12, comment is 0, blank is 3.
+Assets\Scripts\Recognizer.cs, code is 39, comment is 5, blank is 6.
+Assets\Scripts\RecognizerManager.cs, code is 163, comment is 7, blank is 46.
+Assets\Scripts\SceneManager.cs, code is 66, comment is 3, blank is 20.
+Assets\Scripts\ScoreManager.cs, code is 37, comment is 0, blank is 9.
+Assets\Scripts\SetCurrentScoreText.cs, code is 23, comment is 1, blank is 3.
+Assets\Scripts\SetHighScoreText.cs, code is 23, comment is 1, blank is 3.
+Assets\Scripts\UI\StaticTextSetter.cs, code is 22, comment is 1, blank is 4.
+Assets\Scripts\UI\TextDataSO.cs, code is 11, comment is 0, blank is 2.
+Assets\Scripts\Utils.cs, code is 36, comment is 0, blank is 9.
+Assets\Scripts\VFXScript\EnemyForceShield.cs, code is 50, comment is 2, blank is 11.
+Assets\TextMesh Pro\Fonts\BrontidevpDemoStyle2-ZV8E3.otf, it is a binary file.
+Assets\TextMesh Pro\Fonts\FontsFree-Net-Starzone.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-Black.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-Bold.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-ExtraBold.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-ExtraLight.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-Light.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-Medium.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-Regular.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-SemiBold.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter-VariableFont_slnt,wght.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\Inter.zip, it is a binary file.
+Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt, code is 29, comment is 1, blank is 17.
+Assets\TextMesh Pro\Fonts\LiberationSans.ttf, it is a binary file.
+Assets\TextMesh Pro\Fonts\ShadowsIntoLight-Regular.ttf, it is a binary file.
+Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt, code is 1, comment is 0, blank is 0.
+Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt, code is 1, comment is 0, blank is 0.
+Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader, code is 109, comment is 2, blank is 32.
+Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader, code is 112, comment is 3, blank is 30.
+Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader, code is 109, comment is 2, blank is 32.
+Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader, code is 243, comment is 8, blank is 70.
+Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader, code is 241, comment is 5, blank is 65.
+Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader, code is 189, comment is 15, blank is 49.
+Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader, code is 183, comment is 13, blank is 49.
+Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader, code is 83, comment is 4, blank is 20.
+Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader, code is 184, comment is 13, blank is 49.
+Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader, code is 103, comment is 9, blank is 27.
+Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader, code is 122, comment is 5, blank is 32.
+Assets\TextMesh Pro\Shaders\TMP_SDF.shader, code is 243, comment is 8, blank is 70.
+Assets\TextMesh Pro\Shaders\TMP_Sprite.shader, code is 97, comment is 0, blank is 19.
+Assets\TextMesh Pro\Shaders\TMPro.cginc, code is 63, comment is 3, blank is 19.
+Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc, code is 122, comment is 3, blank is 33.
+Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc, code is 62, comment is 44, blank is 13.
+Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc, code is 76, comment is 8, blank is 18.
+Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt, code is 2, comment is 1, blank is 1.
+Assets\TextMesh Pro\Sprites\EmojiOne.json, code is 155, comment is 0, blank is 1.
+Assets\VFX\ForceShield.vfx, code is 1803, comment is 0, blank is 0.
+Assets\VFX\ForceShieldShader.shadergraph, code is 3918, comment is 0, blank is 135.
+Assets\VFX\Parachute Trails.vfx, code is 3948, comment is 0, blank is 0.
+Assets\VFX\WorldParticle.vfx, code is 1971, comment is 0, blank is 0.
+LevelPlay.Installer.Editor.csproj, code is 761, comment is 0, blank is 0.
+Logs\AssetImportWorker0.log, code is 467, comment is 0, blank is 38.
+Logs\AssetImportWorker1.log, code is 455, comment is 0, blank is 38.
+Logs\Packages-Update.log, code is 51, comment is 0, blank is 6.
+Logs\shadercompiler-AssetImportWorker0.log, code is 2, comment is 0, blank is 1.
+Logs\shadercompiler-UnityShaderCompiler.exe0.log, code is 2, comment is 0, blank is 1.
+MobileDependencyResolverLP.Installer.Editor.csproj, code is 761, comment is 0, blank is 0.
+Packages\manifest.json, code is 49, comment is 0, blank is 0.
+Packages\packages-lock.json, code is 486, comment is 0, blank is 0.
+Parashoot!.sln, code is 233, comment is 0, blank is 0.
+PPv2URPConverters.csproj, code is 796, comment is 0, blank is 0.
+README.md, code is 1, comment is 0, blank is 1.
+Temp.txt, code is 1, comment is 0, blank is 0.
+UIElementsSchema\GlobalNamespace.xsd, code is 48, comment is 0, blank is 0.
+UIElementsSchema\UIElements.xsd, code is 20, comment is 0, blank is 0.
+UIElementsSchema\Unity.Cloud.Collaborate.Components.ChangeListEntries.xsd, code is 109, comment is 0, blank is 0.
+UIElementsSchema\Unity.Cloud.Collaborate.Components.xsd, code is 332, comment is 0, blank is 0.
+UIElementsSchema\Unity.Cloud.Collaborate.Views.xsd, code is 67, comment is 0, blank is 0.
+UIElementsSchema\Unity.Profiling.Editor.xsd, code is 104, comment is 0, blank is 0.
+UIElementsSchema\Unity.UI.Builder.xsd, code is 953, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.Experimental.GraphView.xsd, code is 66, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.Overlays.xsd, code is 50, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.PackageManager.UI.Internal.xsd, code is 584, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.Rendering.LookDev.xsd, code is 48, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.Search.xsd, code is 28, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.ShaderGraph.Drawing.xsd, code is 51, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.ShortcutManagement.xsd, code is 46, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.UIElements.Debugger.xsd, code is 25, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.UIElements.xsd, code is 896, comment is 0, blank is 0.
+UIElementsSchema\UnityEditor.VFX.UI.xsd, code is 130, comment is 0, blank is 0.
+UIElementsSchema\UnityEngine.UIElements.xsd, code is 905, comment is 0, blank is 0.
+Unity.2D.Sprite.Editor.csproj, code is 799, comment is 0, blank is 0.
+Unity.Burst.CodeGen.csproj, code is 721, comment is 0, blank is 0.
+Unity.Burst.csproj, code is 735, comment is 0, blank is 0.
+Unity.Burst.Editor.csproj, code is 783, comment is 0, blank is 0.
+Unity.CollabProxy.Editor.csproj, code is 765, comment is 0, blank is 0.
+Unity.EditorCoroutines.Editor.csproj, code is 764, comment is 0, blank is 0.
+Unity.Mathematics.csproj, code is 817, comment is 0, blank is 0.
+Unity.Mathematics.Editor.csproj, code is 768, comment is 0, blank is 0.
+Unity.Notifications.Android.csproj, code is 737, comment is 0, blank is 0.
+Unity.Notifications.csproj, code is 783, comment is 0, blank is 0.
+Unity.Notifications.iOS.csproj, code is 738, comment is 0, blank is 0.
+Unity.Performance.Profile-Analyzer.Editor.csproj, code is 796, comment is 0, blank is 0.
+Unity.PlasticSCM.Editor.csproj, code is 1039, comment is 0, blank is 0.
+Unity.Postprocessing.Editor.csproj, code is 799, comment is 0, blank is 0.
+Unity.Postprocessing.Runtime.csproj, code is 785, comment is 0, blank is 0.
+Unity.RenderPipeline.Universal.ShaderLibrary.csproj, code is 776, comment is 0, blank is 0.
+Unity.RenderPipelines.Core.Editor.csproj, code is 896, comment is 0, blank is 0.
+Unity.RenderPipelines.Core.Runtime.csproj, code is 876, comment is 0, blank is 0.
+Unity.RenderPipelines.Core.ShaderLibrary.csproj, code is 780, comment is 0, blank is 0.
+Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj, code is 739, comment is 0, blank is 0.
+Unity.RenderPipelines.Universal.Editor.csproj, code is 1064, comment is 0, blank is 0.
+Unity.RenderPipelines.Universal.Runtime.csproj, code is 910, comment is 0, blank is 0.
+Unity.RenderPipelines.Universal.Shaders.csproj, code is 855, comment is 0, blank is 0.
+Unity.Rider.Editor.csproj, code is 750, comment is 0, blank is 0.
+Unity.Searcher.Editor.csproj, code is 773, comment is 0, blank is 0.
+Unity.Settings.Editor.csproj, code is 771, comment is 0, blank is 0.
+Unity.ShaderGraph.Editor.csproj, code is 1534, comment is 0, blank is 0.
+Unity.ShaderGraph.Utilities.csproj, code is 764, comment is 0, blank is 0.
+Unity.TestTools.CodeCoverage.Editor.csproj, code is 772, comment is 0, blank is 0.
+Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.csproj, code is 775, comment is 0, blank is 0.
+Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj, code is 764, comment is 0, blank is 0.
+Unity.TextMeshPro.csproj, code is 787, comment is 0, blank is 0.
+Unity.TextMeshPro.Editor.csproj, code is 812, comment is 0, blank is 0.
+Unity.Timeline.csproj, code is 801, comment is 0, blank is 0.
+Unity.Timeline.Editor.csproj, code is 1036, comment is 0, blank is 0.
+Unity.VisualEffectGraph.Editor.csproj, code is 1332, comment is 0, blank is 0.
+Unity.VisualEffectGraph.Runtime.csproj, code is 855, comment is 0, blank is 0.
+Unity.VisualScripting.Core.csproj, code is 1155, comment is 0, blank is 0.
+Unity.VisualScripting.Core.Editor.csproj, code is 1236, comment is 0, blank is 0.
+Unity.VisualScripting.Flow.csproj, code is 1134, comment is 0, blank is 0.
+Unity.VisualScripting.Flow.Editor.csproj, code is 940, comment is 0, blank is 0.
+Unity.VisualScripting.SettingsProvider.Editor.csproj, code is 789, comment is 0, blank is 0.
+Unity.VisualScripting.Shared.Editor.csproj, code is 785, comment is 0, blank is 0.
+Unity.VisualScripting.State.csproj, code is 767, comment is 0, blank is 0.
+Unity.VisualScripting.State.Editor.csproj, code is 848, comment is 0, blank is 0.
+Unity.VisualStudio.Editor.csproj, code is 752, comment is 0, blank is 0.
+Unity.VSCode.Editor.csproj, code is 768, comment is 0, blank is 0.
+UnityEditor.TestRunner.csproj, code is 863, comment is 0, blank is 0.
+UnityEditor.UI.csproj, code is 793, comment is 0, blank is 0.
+UnityEngine.TestRunner.csproj, code is 786, comment is 0, blank is 0.
+UnityEngine.UI.csproj, code is 807, comment is 0, blank is 0.
+UserSettings\Layouts\CurrentMaximizeLayout.dwlt, code is 2024, comment is 0, blank is 0.
+UserSettings\Layouts\default-2021.dwlt, code is 2119, comment is 0, blank is 0.
+UserSettings\Search.settings, code is 66, comment is 0, blank is 0.
+===============================================================================

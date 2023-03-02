@@ -100,7 +100,7 @@ PrefabInstance:
     - target: {fileID: 281650419784281064, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 27c925eb37c1a4447b6e3ce7ea035698, type: 2}
+      objectReference: {fileID: 2100000, guid: 6f1fc8e7ad9be6645b2f13885175ac38, type: 2}
     - target: {fileID: 7166748457196832281, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -151,7 +151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7277780427517370870, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7277780427517370873, guid: 803b72c0a7a0a21438e8821f1f149d49, type: 3}
       propertyPath: _onKillScore

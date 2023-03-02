@@ -16,9 +16,6 @@ public class MissileController : MonoBehaviour
 
     [SerializeField]
     private VisualEffect _explosionEffect;
-    
-
-    private bool _allowFollow = false;
 
     void Start()
     {
@@ -39,25 +36,23 @@ public class MissileController : MonoBehaviour
     {
         if(other.gameObject == _target.gameObject)
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 10);
+            this.gameObject.SetActive(false);
+
+            if(_explosionEffect != null)
+            {
+                GameObject explosion = Instantiate(_explosionEffect.gameObject);
+
+                explosion.transform.position = this.transform.position;
+                Destroy(explosion.gameObject, 2);
+            }
 
             Camera.main.TryGetComponent(out CameraController camController);
 
-            camController?.Shake();
-        }
-    }
-
-
-    private void OnDestroy()
-    {
-        if(_explosionEffect != null)
-        {
-            GameObject explosion = Instantiate(_explosionEffect.gameObject);
-
-            explosion.transform.position = this.transform.position;
-            Destroy(explosion.gameObject, 2);
+            if(camController != null) camController.Shake();
         }
 
+        else return;
     }
 
     public void SetTarget(GameObject target)
@@ -80,7 +75,8 @@ public class MissileController : MonoBehaviour
 
         else
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 10);
+            this.gameObject.SetActive(false);
         }
     }
 

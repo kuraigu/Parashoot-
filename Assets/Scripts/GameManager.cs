@@ -8,7 +8,7 @@ using UnityEngine.Events;
 /// </summary>
 /// <author> Innoh Reloza </author>
 public class GameManager : MonoBehaviour
-{
+{   
     private static GameManager _instance;
     /// <summary>
     /// The singleton instance of the GameManager, which allows for easy access to the class from other scripts
@@ -26,6 +26,34 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public UnityAction OnEnemyDeath;
 
+
+    public void TogglePause()
+    {
+        if(Time.timeScale == 0) Time.timeScale = 1;
+        else if(Time.timeScale == 1) Time.timeScale = 0;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void Retry()
+    {
+        UnPause();
+
+        if(EnemyManager.instance != null) EnemyManager.instance.ClearAllEnemies();
+        if(RecognizerManager.instance != null) 
+        {
+            RecognizerManager.instance.EnableRecognition();
+            RecognizerManager.instance.ClearWrongGesturesContainer();
+        }
+    }
     private void Awake()
     {
         _instance = this;
@@ -35,6 +63,11 @@ public class GameManager : MonoBehaviour
         if (Application.targetFrameRate < 60)
         {
             Application.targetFrameRate = 60;
+        }
+
+        if(DataManager.instance != null)
+        {
+            DataManager.instance.LoadData();
         }
     }
 }

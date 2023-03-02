@@ -1,0 +1,1370 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "h:\\Development  Tasks\\Unity Projects\\Parashoot!",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2023-03-02 17:18:34",
+            "filesum": 201,
+            "codesum": 94705,
+            "commentsum": 324,
+            "blanksum": 1608,
+            "statistics": {
+                ".csproj": {
+                    "code": 47850,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".lighting": {
+                    "code": 64,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".vfx": {
+                    "code": 19159,
+                    "comment": 0,
+                    "blank": 0
+                },
+                "": {
+                    "code": 63,
+                    "comment": 6,
+                    "blank": 13
+                },
+                ".shadersubgraph": {
+                    "code": 560,
+                    "comment": 0,
+                    "blank": 20
+                },
+                ".shadergraph": {
+                    "code": 10857,
+                    "comment": 0,
+                    "blank": 382
+                },
+                ".json": {
+                    "code": 690,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".shader": {
+                    "code": 2018,
+                    "comment": 87,
+                    "blank": 544
+                },
+                ".cginc": {
+                    "code": 323,
+                    "comment": 58,
+                    "blank": 83
+                },
+                ".txt": {
+                    "code": 660,
+                    "comment": 2,
+                    "blank": 18
+                },
+                ".cs": {
+                    "code": 1950,
+                    "comment": 168,
+                    "blank": 461
+                },
+                ".dwlt": {
+                    "code": 4143,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".settings": {
+                    "code": 66,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".controller": {
+                    "code": 248,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".asmdef": {
+                    "code": 13,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".anim": {
+                    "code": 368,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".api": {
+                    "code": 0,
+                    "comment": 3,
+                    "blank": 0
+                },
+                ".xsd": {
+                    "code": 4462,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".sln": {
+                    "code": 233,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".md": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".lock": {
+                    "code": 0,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".log": {
+                    "code": 977,
+                    "comment": 0,
+                    "blank": 84
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": ".gitattributes"
+                },
+                {
+                    "blank": 12,
+                    "code": 56,
+                    "comment": 6,
+                    "filename": ".gitignore"
+                },
+                {
+                    "filename": ".vs\\Parashoot!\\FileContentIndex\\15e93e6c-1b1a-4392-9352-4d7d117d86d3.vsidx",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".vs\\Parashoot!\\FileContentIndex\\2a6b5430-f057-4120-9fdf-6670834897e7.vsidx",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".vs\\Parashoot!\\FileContentIndex\\a9f300b3-7e28-4888-aab5-f289d97f4248.vsidx",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".vs\\Parashoot!\\FileContentIndex\\c3ff6d7d-37ef-4157-a530-b28cfcee1c9c.vsidx",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": ".vs\\Parashoot!\\FileContentIndex\\read.lock"
+                },
+                {
+                    "blank": 0,
+                    "code": 622,
+                    "comment": 0,
+                    "filename": ".vs\\Parashoot!\\v17\\HierarchyCache.v1.txt"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": ".vsconfig"
+                },
+                {
+                    "blank": 0,
+                    "code": 944,
+                    "comment": 0,
+                    "filename": "Assembly-CSharp-Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 914,
+                    "comment": 0,
+                    "filename": "Assembly-CSharp.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "Assets\\Animations\\UI\\Image.controller"
+                },
+                {
+                    "blank": 0,
+                    "code": 169,
+                    "comment": 0,
+                    "filename": "Assets\\Animations\\UI\\PanelExpand.anim"
+                },
+                {
+                    "blank": 0,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "Assets\\Animations\\UI\\PanelGenericAnimation.controller"
+                },
+                {
+                    "blank": 0,
+                    "code": 199,
+                    "comment": 0,
+                    "filename": "Assets\\Animations\\UI\\TitleCircleRotate.anim"
+                },
+                {
+                    "blank": 17,
+                    "code": 107,
+                    "comment": 1,
+                    "filename": "Assets\\Editor\\MobileDependencyResolverInstallerLp.cs"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 3,
+                    "filename": "Assets\\Editor\\MobileDependencyResolverLP.Installer.Editor.api"
+                },
+                {
+                    "blank": 1,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "Assets\\Editor\\MobileDependencyResolverLP.Installer.Editor.asmdef"
+                },
+                {
+                    "blank": 0,
+                    "code": 104,
+                    "comment": 0,
+                    "filename": "Assets\\marine.controller"
+                },
+                {
+                    "blank": 20,
+                    "code": 560,
+                    "comment": 0,
+                    "filename": "Assets\\Materials\\BurnSubGraph.shadersubgraph"
+                },
+                {
+                    "blank": 64,
+                    "code": 1727,
+                    "comment": 0,
+                    "filename": "Assets\\Materials\\DottedLine.shadergraph"
+                },
+                {
+                    "blank": 109,
+                    "code": 3041,
+                    "comment": 0,
+                    "filename": "Assets\\Materials\\EnemyMaterials\\EnemyShader.shadergraph"
+                },
+                {
+                    "blank": 74,
+                    "code": 2171,
+                    "comment": 0,
+                    "filename": "Assets\\Materials\\EnvironmentMaterials\\Water.shadergraph"
+                },
+                {
+                    "blank": 0,
+                    "code": 64,
+                    "comment": 0,
+                    "filename": "Assets\\Materials\\New Lighting Settings.lighting"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "Assets\\MobileDependencyResolver\\Editor\\mobile-dependency-resolver.txt"
+                },
+                {
+                    "filename": "Assets\\Prefabs\\platform.blend",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 7426,
+                    "comment": 0,
+                    "filename": "Assets\\Prefabs\\VFX\\Explosion.vfx"
+                },
+                {
+                    "blank": 0,
+                    "code": 4011,
+                    "comment": 0,
+                    "filename": "Assets\\Prefabs\\VFX\\HitGround.vfx"
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-0_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-10_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-11_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-12_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-13_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-14_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-1_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-2_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-3_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-4_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-5_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-6_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-7_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-8_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\Lightmap-9_comp_light.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\Scenes\\Game\\ReflectionProbe-0.exr",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 12,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\AssetsGameScene.cs"
+                },
+                {
+                    "blank": 8,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\CameraController.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 29,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\CircleGesture.cs"
+                },
+                {
+                    "blank": 7,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\CursorManager.cs"
+                },
+                {
+                    "blank": 12,
+                    "code": 56,
+                    "comment": 9,
+                    "filename": "Assets\\Scripts\\DataManager.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\DebugHandler.cs"
+                },
+                {
+                    "blank": 27,
+                    "code": 132,
+                    "comment": 8,
+                    "filename": "Assets\\Scripts\\DrawingBoard.cs"
+                },
+                {
+                    "blank": 87,
+                    "code": 347,
+                    "comment": 13,
+                    "filename": "Assets\\Scripts\\Enemy.cs"
+                },
+                {
+                    "blank": 8,
+                    "code": 48,
+                    "comment": 24,
+                    "filename": "Assets\\Scripts\\EnemyGesturePanel.cs"
+                },
+                {
+                    "blank": 70,
+                    "code": 229,
+                    "comment": 68,
+                    "filename": "Assets\\Scripts\\EnemyManager.cs"
+                },
+                {
+                    "blank": 10,
+                    "code": 48,
+                    "comment": 15,
+                    "filename": "Assets\\Scripts\\GameManager.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Gestures\\ClickGesture.cs"
+                },
+                {
+                    "blank": 7,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Gestures\\DownGesture.cs"
+                },
+                {
+                    "blank": 9,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Gestures\\GestureSO.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Gestures\\LeftGesture.cs"
+                },
+                {
+                    "blank": 7,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Gestures\\RightGesture.cs"
+                },
+                {
+                    "blank": 7,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Gestures\\UpGesture.cs"
+                },
+                {
+                    "blank": 11,
+                    "code": 50,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\LineDrawer.cs"
+                },
+                {
+                    "blank": 22,
+                    "code": 61,
+                    "comment": 1,
+                    "filename": "Assets\\Scripts\\MissileController.cs"
+                },
+                {
+                    "blank": 7,
+                    "code": 33,
+                    "comment": 8,
+                    "filename": "Assets\\Scripts\\MissileManager.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "Assets\\Scripts\\MortalityBoxController.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Raycaster.cs"
+                },
+                {
+                    "blank": 6,
+                    "code": 39,
+                    "comment": 5,
+                    "filename": "Assets\\Scripts\\Recognizer.cs"
+                },
+                {
+                    "blank": 46,
+                    "code": 163,
+                    "comment": 7,
+                    "filename": "Assets\\Scripts\\RecognizerManager.cs"
+                },
+                {
+                    "blank": 20,
+                    "code": 66,
+                    "comment": 3,
+                    "filename": "Assets\\Scripts\\SceneManager.cs"
+                },
+                {
+                    "blank": 9,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\ScoreManager.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "Assets\\Scripts\\SetCurrentScoreText.cs"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "Assets\\Scripts\\SetHighScoreText.cs"
+                },
+                {
+                    "blank": 4,
+                    "code": 22,
+                    "comment": 1,
+                    "filename": "Assets\\Scripts\\UI\\StaticTextSetter.cs"
+                },
+                {
+                    "blank": 2,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\UI\\TextDataSO.cs"
+                },
+                {
+                    "blank": 9,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "Assets\\Scripts\\Utils.cs"
+                },
+                {
+                    "blank": 11,
+                    "code": 50,
+                    "comment": 2,
+                    "filename": "Assets\\Scripts\\VFXScript\\EnemyForceShield.cs"
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\BrontidevpDemoStyle2-ZV8E3.otf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\FontsFree-Net-Starzone.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-Black.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-Bold.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-ExtraBold.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-ExtraLight.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-Light.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-Medium.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-Regular.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-SemiBold.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter-VariableFont_slnt,wght.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\Inter.zip",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 17,
+                    "code": 29,
+                    "comment": 1,
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\LiberationSans - OFL.txt"
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\LiberationSans.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Assets\\TextMesh Pro\\Fonts\\ShadowsIntoLight-Regular.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "Assets\\TextMesh Pro\\Resources\\LineBreaking Following Characters.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "Assets\\TextMesh Pro\\Resources\\LineBreaking Leading Characters.txt"
+                },
+                {
+                    "blank": 32,
+                    "code": 109,
+                    "comment": 2,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap-Custom-Atlas.shader"
+                },
+                {
+                    "blank": 30,
+                    "code": 112,
+                    "comment": 3,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap-Mobile.shader"
+                },
+                {
+                    "blank": 32,
+                    "code": 109,
+                    "comment": 2,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_Bitmap.shader"
+                },
+                {
+                    "blank": 70,
+                    "code": 243,
+                    "comment": 8,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF Overlay.shader"
+                },
+                {
+                    "blank": 65,
+                    "code": 241,
+                    "comment": 5,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF SSD.shader"
+                },
+                {
+                    "blank": 49,
+                    "code": 189,
+                    "comment": 15,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile Masking.shader"
+                },
+                {
+                    "blank": 49,
+                    "code": 183,
+                    "comment": 13,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile Overlay.shader"
+                },
+                {
+                    "blank": 20,
+                    "code": 83,
+                    "comment": 4,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile SSD.shader"
+                },
+                {
+                    "blank": 49,
+                    "code": 184,
+                    "comment": 13,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader"
+                },
+                {
+                    "blank": 27,
+                    "code": 103,
+                    "comment": 9,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Surface-Mobile.shader"
+                },
+                {
+                    "blank": 32,
+                    "code": 122,
+                    "comment": 5,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Surface.shader"
+                },
+                {
+                    "blank": 70,
+                    "code": 243,
+                    "comment": 8,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF.shader"
+                },
+                {
+                    "blank": 19,
+                    "code": 97,
+                    "comment": 0,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMP_Sprite.shader"
+                },
+                {
+                    "blank": 19,
+                    "code": 63,
+                    "comment": 3,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMPro.cginc"
+                },
+                {
+                    "blank": 33,
+                    "code": 122,
+                    "comment": 3,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMPro_Mobile.cginc"
+                },
+                {
+                    "blank": 13,
+                    "code": 62,
+                    "comment": 44,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMPro_Properties.cginc"
+                },
+                {
+                    "blank": 18,
+                    "code": 76,
+                    "comment": 8,
+                    "filename": "Assets\\TextMesh Pro\\Shaders\\TMPro_Surface.cginc"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 1,
+                    "filename": "Assets\\TextMesh Pro\\Sprites\\EmojiOne Attribution.txt"
+                },
+                {
+                    "blank": 1,
+                    "code": 155,
+                    "comment": 0,
+                    "filename": "Assets\\TextMesh Pro\\Sprites\\EmojiOne.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1803,
+                    "comment": 0,
+                    "filename": "Assets\\VFX\\ForceShield.vfx"
+                },
+                {
+                    "blank": 135,
+                    "code": 3918,
+                    "comment": 0,
+                    "filename": "Assets\\VFX\\ForceShieldShader.shadergraph"
+                },
+                {
+                    "blank": 0,
+                    "code": 3948,
+                    "comment": 0,
+                    "filename": "Assets\\VFX\\Parachute Trails.vfx"
+                },
+                {
+                    "blank": 0,
+                    "code": 1971,
+                    "comment": 0,
+                    "filename": "Assets\\VFX\\WorldParticle.vfx"
+                },
+                {
+                    "blank": 0,
+                    "code": 761,
+                    "comment": 0,
+                    "filename": "LevelPlay.Installer.Editor.csproj"
+                },
+                {
+                    "blank": 38,
+                    "code": 467,
+                    "comment": 0,
+                    "filename": "Logs\\AssetImportWorker0.log"
+                },
+                {
+                    "blank": 38,
+                    "code": 455,
+                    "comment": 0,
+                    "filename": "Logs\\AssetImportWorker1.log"
+                },
+                {
+                    "blank": 6,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "Logs\\Packages-Update.log"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "Logs\\shadercompiler-AssetImportWorker0.log"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "Logs\\shadercompiler-UnityShaderCompiler.exe0.log"
+                },
+                {
+                    "blank": 0,
+                    "code": 761,
+                    "comment": 0,
+                    "filename": "MobileDependencyResolverLP.Installer.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "Packages\\manifest.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 486,
+                    "comment": 0,
+                    "filename": "Packages\\packages-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 233,
+                    "comment": 0,
+                    "filename": "Parashoot!.sln"
+                },
+                {
+                    "blank": 0,
+                    "code": 796,
+                    "comment": 0,
+                    "filename": "PPv2URPConverters.csproj"
+                },
+                {
+                    "blank": 1,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "Temp.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\GlobalNamespace.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UIElements.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 109,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\Unity.Cloud.Collaborate.Components.ChangeListEntries.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 332,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\Unity.Cloud.Collaborate.Components.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 67,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\Unity.Cloud.Collaborate.Views.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 104,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\Unity.Profiling.Editor.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 953,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\Unity.UI.Builder.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 66,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.Experimental.GraphView.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 50,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.Overlays.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 584,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.PackageManager.UI.Internal.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 48,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.Rendering.LookDev.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.Search.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.ShaderGraph.Drawing.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.ShortcutManagement.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 25,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.UIElements.Debugger.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 896,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.UIElements.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 130,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEditor.VFX.UI.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 905,
+                    "comment": 0,
+                    "filename": "UIElementsSchema\\UnityEngine.UIElements.xsd"
+                },
+                {
+                    "blank": 0,
+                    "code": 799,
+                    "comment": 0,
+                    "filename": "Unity.2D.Sprite.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 721,
+                    "comment": 0,
+                    "filename": "Unity.Burst.CodeGen.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 735,
+                    "comment": 0,
+                    "filename": "Unity.Burst.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 783,
+                    "comment": 0,
+                    "filename": "Unity.Burst.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 765,
+                    "comment": 0,
+                    "filename": "Unity.CollabProxy.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 764,
+                    "comment": 0,
+                    "filename": "Unity.EditorCoroutines.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 817,
+                    "comment": 0,
+                    "filename": "Unity.Mathematics.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 768,
+                    "comment": 0,
+                    "filename": "Unity.Mathematics.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 737,
+                    "comment": 0,
+                    "filename": "Unity.Notifications.Android.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 783,
+                    "comment": 0,
+                    "filename": "Unity.Notifications.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 738,
+                    "comment": 0,
+                    "filename": "Unity.Notifications.iOS.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 796,
+                    "comment": 0,
+                    "filename": "Unity.Performance.Profile-Analyzer.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1039,
+                    "comment": 0,
+                    "filename": "Unity.PlasticSCM.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 799,
+                    "comment": 0,
+                    "filename": "Unity.Postprocessing.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 785,
+                    "comment": 0,
+                    "filename": "Unity.Postprocessing.Runtime.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 776,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipeline.Universal.ShaderLibrary.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 896,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipelines.Core.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 876,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipelines.Core.Runtime.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 780,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipelines.Core.ShaderLibrary.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 739,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1064,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipelines.Universal.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 910,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipelines.Universal.Runtime.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 855,
+                    "comment": 0,
+                    "filename": "Unity.RenderPipelines.Universal.Shaders.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 750,
+                    "comment": 0,
+                    "filename": "Unity.Rider.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 773,
+                    "comment": 0,
+                    "filename": "Unity.Searcher.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 771,
+                    "comment": 0,
+                    "filename": "Unity.Settings.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1534,
+                    "comment": 0,
+                    "filename": "Unity.ShaderGraph.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 764,
+                    "comment": 0,
+                    "filename": "Unity.ShaderGraph.Utilities.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 772,
+                    "comment": 0,
+                    "filename": "Unity.TestTools.CodeCoverage.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 775,
+                    "comment": 0,
+                    "filename": "Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 764,
+                    "comment": 0,
+                    "filename": "Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 787,
+                    "comment": 0,
+                    "filename": "Unity.TextMeshPro.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 812,
+                    "comment": 0,
+                    "filename": "Unity.TextMeshPro.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 801,
+                    "comment": 0,
+                    "filename": "Unity.Timeline.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1036,
+                    "comment": 0,
+                    "filename": "Unity.Timeline.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1332,
+                    "comment": 0,
+                    "filename": "Unity.VisualEffectGraph.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 855,
+                    "comment": 0,
+                    "filename": "Unity.VisualEffectGraph.Runtime.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1155,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.Core.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1236,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.Core.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 1134,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.Flow.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 940,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.Flow.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 789,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.SettingsProvider.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 785,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.Shared.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 767,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.State.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 848,
+                    "comment": 0,
+                    "filename": "Unity.VisualScripting.State.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 752,
+                    "comment": 0,
+                    "filename": "Unity.VisualStudio.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 768,
+                    "comment": 0,
+                    "filename": "Unity.VSCode.Editor.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 863,
+                    "comment": 0,
+                    "filename": "UnityEditor.TestRunner.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 793,
+                    "comment": 0,
+                    "filename": "UnityEditor.UI.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 786,
+                    "comment": 0,
+                    "filename": "UnityEngine.TestRunner.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 807,
+                    "comment": 0,
+                    "filename": "UnityEngine.UI.csproj"
+                },
+                {
+                    "blank": 0,
+                    "code": 2024,
+                    "comment": 0,
+                    "filename": "UserSettings\\Layouts\\CurrentMaximizeLayout.dwlt"
+                },
+                {
+                    "blank": 0,
+                    "code": 2119,
+                    "comment": 0,
+                    "filename": "UserSettings\\Layouts\\default-2021.dwlt"
+                },
+                {
+                    "blank": 0,
+                    "code": 66,
+                    "comment": 0,
+                    "filename": "UserSettings\\Search.settings"
+                }
+            ]
+        }
+    ]
+}

@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - WorldUI
   - Grounnd
-  - 
+  - PostProcessing
   - 
   - 
   - 
@@ -42,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: WorldParticle
+    uniqueID: 239642253
+    locked: 0
+  - name: ScreenTransition
+    uniqueID: 1927854469
     locked: 0

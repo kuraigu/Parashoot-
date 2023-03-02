@@ -13,6 +13,8 @@ public class RecognizerManager : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private TextMeshProUGUI _warningText;
+    [SerializeField]
+    private GameObject _wrongGesturesContainer;
 
     [SerializeField]
     private List<GestureSO> _gestureList = new List<GestureSO>();
@@ -26,6 +28,10 @@ public class RecognizerManager : MonoBehaviour
     [SerializeField]
     private int _incorrectGesturesThreshold;
 
+    private bool _allowJamming = false;
+
+    private bool _hasGestureDetected = false;
+
     private bool _allowGestures;
 
     private Coroutine _jamCoroutine;
@@ -38,23 +44,33 @@ public class RecognizerManager : MonoBehaviour
     public uint nothingDetected
     { get { return _nothingDetected; } set { _nothingDetected = value; } }
 
+    public bool allowJamming
+    { get { return _allowJamming; } }
+
+    public bool hasGestureDetected
+    {get {return _hasGestureDetected;} set {_hasGestureDetected = value;}}
+
     void Awake()
     {
         _instance = this;
         _allowGestures = true;
 
-        _warningText = Instantiate(_warningText);
-
-        if(AssetsGameScene.instance != null)
+        if (_warningText != null)
         {
-            _warningText.transform.SetParent(AssetsGameScene.instance.ui.canvas.transform, false);
+            _warningText = Instantiate(_warningText);
+
+            if (AssetsGameScene.instance != null)
+            {
+                _warningText.transform.SetParent(AssetsGameScene.instance.ui.canvas.transform, false);
+            }
+
+            _warningText.gameObject.SetActive(false);
         }
 
-        _warningText.gameObject.SetActive(false);
+        ClearWrongGesturesContainer();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Reset()
     {
 
     }
@@ -63,7 +79,6 @@ public class RecognizerManager : MonoBehaviour
     {
         if (_allowGestures && points.Count > 2)
         {
-            _nothingDetected++;
             foreach (GestureSO g in _gestureList)
             {
                 if (g.CheckSimilarity(points))
@@ -73,14 +88,55 @@ public class RecognizerManager : MonoBehaviour
                 }
             }
 
+            if (allowJamming && !_hasGestureDetected)
+            {
+                _nothingDetected++;
+            }
+
+            _nothingDetected = Math.Clamp(_nothingDetected, 0, (uint)_incorrectGesturesThreshold);
+
+            if (_nothingDetected > 0 && _allowJamming)
+            {
+                ShowWrongGesture();
+            }
+
+            else if (_nothingDetected <= 0)
+            {
+                ClearWrongGesturesContainer();
+            }
+
+            _hasGestureDetected = false;
+
             if (_nothingDetected >= _incorrectGesturesThreshold)
             {
-                DisableRecognition();
-                _jamCoroutine = StartCoroutine(AutomaticReenableTimer(_disableRecognitionDuration));
+                if (EnemyManager.instance.gameOverUI != null && GameManager.instance != null)
+                {
+                    GameManager.instance.Pause();
+                    EnemyManager.instance.gameOverUI.SetActive(true);
+                }
             }
+
+            //if (_nothingDetected >= _incorrectGesturesThreshold && _allowJamming)
+            //{
+            //    DisableRecognition();
+            //    _jamCoroutine = StartCoroutine(AutomaticReenableTimer(_disableRecognitionDuration));
+            //}
+
+            //_allowJamming = false;
+
+            // Reset
         }
     }
 
+    public bool AllowJamming()
+    {
+        return _allowJamming = true;
+    }
+
+    public bool DisallowJamming()
+    {
+        return _allowJamming = false;
+    }
 
     public void DisableRecognition()
     {
@@ -101,27 +157,59 @@ public class RecognizerManager : MonoBehaviour
         float currentTimer = timer;
         float interval = 0.01f;
         string newText = _warningText.text;
-
         string nonFormattedtext = _warningText.text;
-
         _warningText.gameObject.SetActive(true);
 
-        while (true)
+        while (currentTimer > 0)
         {
-            
-            yield return new WaitForSeconds(interval);
-
-            
-            string formattedText = String.Format(newText, currentTimer.ToString("00.00"));
-            _warningText.SetText(formattedText);
-            currentTimer -= interval;
-
-            if (currentTimer <= 0)
+            if (_allowGestures && _nothingDetected <= 0)
             {
-                _warningText.text = nonFormattedtext;
-                _warningText.gameObject.SetActive(false);
-                EnableRecognition();
+                yield return null;
+                currentTimer = 0;
                 break;
+            }
+            else
+            {
+
+                string formattedText = String.Format(newText, currentTimer.ToString("00.00"));
+                _warningText.SetText(formattedText);
+                currentTimer -= interval;
+                yield return new WaitForSeconds(interval);
+            }
+        }
+
+        ClearWrongGesturesContainer();
+        _warningText.text = nonFormattedtext;
+        _warningText.gameObject.SetActive(false);
+        EnableRecognition();
+    }
+
+
+    public void ClearWrongGesturesContainer()
+    {
+        if (_wrongGesturesContainer != null)
+        {
+            for (int i = 0; i < _wrongGesturesContainer.transform.childCount; i++)
+            {
+                if (_wrongGesturesContainer.transform.GetChild(i) != null)
+                    _wrongGesturesContainer.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+    }
+
+
+    private void ShowWrongGesture()
+    {
+        if (_wrongGesturesContainer != null)
+        {
+            if (_nothingDetected <= _wrongGesturesContainer.transform.childCount && _nothingDetected >= 1)
+            {
+                GameObject tempGameObject = _wrongGesturesContainer.transform.GetChild((int)_nothingDetected - 1).gameObject;
+
+                if (tempGameObject != null)
+                {
+                    tempGameObject.SetActive(true);
+                }
             }
         }
     }

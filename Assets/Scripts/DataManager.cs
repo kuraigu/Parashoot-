@@ -31,10 +31,25 @@ public class DataManager : MonoBehaviour
         public uint highScore;
         public uint totalScore;
 
+        public Item[] items;
+
         public Data()
         {
             highScore = 0;
             totalScore = 0;
+        }
+
+        [System.Serializable]
+        public class Item
+        {
+            public string itemName;
+            public int count;
+
+            public Item()
+            {
+                itemName = "";
+                count = 0;
+            }
         }
     }
 

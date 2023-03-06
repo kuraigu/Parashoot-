@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RedemptionPowerUp", menuName = "Items/Power Ups/Redemption")]
 public class RedemptionPowerUpSO : PowerUpItemSO
 {
-    public override void UsePowerUp()
+    public override bool UsePowerUp()
     {
         base.UsePowerUp();
 
@@ -13,6 +13,10 @@ public class RedemptionPowerUpSO : PowerUpItemSO
         {
             RecognizerManager.instance.EnableRecognition();
             RecognizerManager.instance.ClearWrongGesturesContainer();
+
+            return true;
         }
+
+        return false;
     }
 }

@@ -8,7 +8,7 @@ public class UpGesture : GestureSO
     public override bool CheckSimilarity(List<Vector2> points)
     {
         Vector2 totalDirections = Vector2.zero;
-        points = Recognizer.Utils.NormalizeGesture(points);
+        //points = Recognizer.Utils.NormalizeGesture(points);
 
 
         if (points.Count > 3)

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: Redemption
   _sprite: {fileID: 0}
+  _cost: 10000
+  _maxCount: 3

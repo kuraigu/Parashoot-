@@ -317,6 +317,13 @@ public class Enemy : MonoBehaviour
         if (ScoreManager.instance != null)
         {
             ScoreManager.instance.AddScore(_onKillScore);
+
+            if(FloatingMessageManager.instance != null)
+            {
+                string text = "<color=green>+ {0}<b></color>";
+                text = string.Format(text, _onKillScore.ToString());
+                FloatingMessageManager.instance.SpawnFloatingTextControlPosition(text, this.transform.position);
+            }
         }
 
         if (_rigidBody != null && _collider != null)

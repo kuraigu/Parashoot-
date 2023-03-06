@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class PowerUpItemSO : ItemSO
 {
-    public virtual void UsePowerUp()
-    {}
+    public virtual bool UsePowerUp()
+    {
+        return false;
+    }
+
+    public override bool UseItem()
+    {
+        return false;
+    }
 }

@@ -50,6 +50,12 @@ public class DataManager : MonoBehaviour
                 itemName = "";
                 count = 0;
             }
+
+            public Item(string itemName, int count)
+            {
+                this.itemName = itemName;
+                this.count = count;
+            }
         }
     }
 

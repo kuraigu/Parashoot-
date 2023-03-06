@@ -9,7 +9,7 @@ public class RightGesture : GestureSO
     {
         Vector2 totalDirections = Vector2.zero;
 
-        points = Recognizer.Utils.NormalizeGesture(points);
+        //points = Recognizer.Utils.NormalizeGesture(points);
 
         if (points.Count > 3)
         {

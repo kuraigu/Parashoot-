@@ -48,7 +48,7 @@ public class RecognizerManager : MonoBehaviour
     { get { return _allowJamming; } }
 
     public bool hasGestureDetected
-    {get {return _hasGestureDetected;} set {_hasGestureDetected = value;}}
+    { get { return _hasGestureDetected; } set { _hasGestureDetected = value; } }
 
     void Awake()
     {
@@ -91,6 +91,11 @@ public class RecognizerManager : MonoBehaviour
             if (allowJamming && !_hasGestureDetected)
             {
                 _nothingDetected++;
+
+                if (FloatingMessageManager.instance != null)
+                {
+                    FloatingMessageManager.instance.SpawnFloatingText("<b><color=#ff4242>No Matching Gestures!</color></b>", 3.0f);
+                }
             }
 
             _nothingDetected = Math.Clamp(_nothingDetected, 0, (uint)_incorrectGesturesThreshold);

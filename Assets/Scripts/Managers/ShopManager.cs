@@ -105,7 +105,7 @@ public class ShopManager : MonoBehaviour
             {
                 if (FloatingMessageManager.instance != null)
                 {
-                    FloatingMessageManager.instance.SpawnFloatingText("Not enough total score!");
+                    FloatingMessageManager.instance.SpawnFloatingText("Not enough ACES!");
                 }
             }
         }

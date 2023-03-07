@@ -88,7 +88,6 @@ public class SetItemOnShop : MonoBehaviour
                 {
                     ShopManager.ItemPurchase itemPurchase = ShopManager.instance.VerifyItem(_itemSO);
                     int count = _itemSO.maxCount - ItemManager.instance.GetCount(_itemSO);
-                    if (itemPurchase != null) count = itemPurchase.count;
                     _remainingText.text = string.Format(_remainingTextFormat, count);
                 }
 

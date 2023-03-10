@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4307825975074923457}
   - component: {fileID: 4307825975074923458}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: RaycastBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4307825975338886193}
   - component: {fileID: 4307825975338886194}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 4307825975908910820}
   - component: {fileID: 4307825975908910821}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 4307825975924151532}
   - component: {fileID: 4307825975924151533}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

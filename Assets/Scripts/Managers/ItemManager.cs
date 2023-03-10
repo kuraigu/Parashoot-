@@ -56,13 +56,13 @@ public class ItemManager : MonoBehaviour
     }
 
 
-    public bool IsCountValid(ItemSO item, int minCount = 0)
+    public bool IsCountValid(ItemSO item, int minCount = 1)
     {
         if (_dataItemsDictionary != null)
         {
             if (_dataItemsDictionary.ContainsKey(item.itemName))
             {
-                if (_dataItemsDictionary[item.itemName].count > minCount)
+                if (_dataItemsDictionary[item.itemName].count >= minCount)
                 {
                     return true;
                 }

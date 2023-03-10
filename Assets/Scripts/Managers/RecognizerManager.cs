@@ -77,8 +77,10 @@ public class RecognizerManager : MonoBehaviour
 
     public void CheckAllGestures(List<Vector2> points)
     {
-        if (_allowGestures && points.Count > 2)
+        if (_allowGestures && points.Count > 5)
         {
+            List<Vector2> normalizedPoints = Recognizer.Utils.NormalizeGesture(points);
+
             foreach (GestureSO g in _gestureList)
             {
                 if (g.CheckSimilarity(points))

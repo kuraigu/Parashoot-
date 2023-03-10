@@ -322,7 +322,9 @@ public class Enemy : MonoBehaviour
             {
                 string text = "<color=green>+ {0}<b></color>";
                 text = string.Format(text, _onKillScore.ToString());
-                FloatingMessageManager.instance.SpawnFloatingTextControlPosition(text, this.transform.position);
+
+                Vector3 pos = this.transform.position - Vector3.one;
+                FloatingMessageManager.instance.SpawnFloatingTextControlPosition(text, pos);
             }
         }
 

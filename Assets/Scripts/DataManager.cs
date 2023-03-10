@@ -18,7 +18,7 @@ public class DataManager : MonoBehaviour
     }
 
     public Data data
-    {get {return _data;}}
+    { get { return _data; } }
 
     public void Awake()
     {
@@ -30,13 +30,16 @@ public class DataManager : MonoBehaviour
     {
         public uint highScore;
         public uint totalScore;
-
         public Item[] items;
+
+        public Settings settings;
 
         public Data()
         {
             highScore = 0;
             totalScore = 0;
+
+            settings = new Settings();
         }
 
         [System.Serializable]
@@ -55,6 +58,26 @@ public class DataManager : MonoBehaviour
             {
                 this.itemName = itemName;
                 this.count = count;
+            }
+        }
+
+        [System.Serializable]
+        public class Settings
+        {
+            public float musicVolume;
+
+            public Settings()
+            {
+                musicVolume = 1.0f;
+            }
+
+
+            public void ApplySettings()
+            {
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.SetVolume(musicVolume);
+                }
             }
         }
     }
@@ -81,7 +104,11 @@ public class DataManager : MonoBehaviour
 
             // Deserialize the JSON string into a Data object
             _data = JsonUtility.FromJson<Data>(jsonData);
+
+
+            _data.settings?.ApplySettings();
         }
+
         else
         {
             // If the save file doesn't exist, create a new Data object

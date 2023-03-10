@@ -93,6 +93,8 @@ public class ShopManager : MonoBehaviour
                     {
                         text += "Bought {0} x{1}| ";
                         text = string.Format(text, itemPurchase.item.itemName, itemPurchase.count);
+
+                        DataManager.instance.data.totalScore -= (uint)itemPurchase.item.cost * (uint)itemPurchase.count;
                     }
                 }
 

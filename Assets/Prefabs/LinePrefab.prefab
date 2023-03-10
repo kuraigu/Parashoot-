@@ -146,4 +146,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 347201240323180617}
   _pointList: []
-  _accuracy: 0.1
+  _accuracy: 0.01

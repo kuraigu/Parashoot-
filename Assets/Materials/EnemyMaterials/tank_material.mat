@@ -7,15 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tank Material
+  m_Name: tank_material
   m_Shader: {fileID: -6465566751694194690, guid: 8a8792bdd2d42664a94c652487d51592, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 1
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -25,12 +24,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _BurnSubGraph_e0fa8633930949819d8b5061b1a10fb8_Texture2D_3066412647:
-        m_Texture: {fileID: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 170b4701428caec44a9ad59de6e293e2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: bdbd313a12d15c24595794387957d957, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -47,27 +46,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
-    - _Blend: 0
-    - _CastShadows: 1
-    - _Cull: 2
-    - _DstBlend: 10
     - _Noise_Scale: 50
     - _Noise_Step: 1
     - _QueueControl: 0
-    - _QueueOffset: 1
-    - _ReceiveShadows: 1
-    - _SrcBlend: 5
-    - _Surface: 1
-    - _WorkflowMode: 1
-    - _ZTest: 4
-    - _ZWrite: 0
-    - _ZWriteControl: 0
+    - _QueueOffset: 0
     m_Colors:
     - _GlowColor: {r: 1.960784, g: 1.301961, b: 0.8235294, a: 0}
-    - _MainColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainTexTiling: {r: 0, g: 0, b: 0, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 20, g: 20, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2291106628049190434
+--- !u!114 &2863505319579922359
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -16,7 +16,6 @@ public class MissileController : MonoBehaviour
 
     [SerializeField]
     private VisualEffect _explosionEffect;
-
     void Start()
     {
     }
@@ -44,8 +43,10 @@ public class MissileController : MonoBehaviour
                 GameObject explosion = Instantiate(_explosionEffect.gameObject);
 
                 explosion.transform.position = this.transform.position;
-                Destroy(explosion.gameObject, 2);
+                Destroy(explosion.gameObject, 10);
             }
+
+            
 
             Camera.main.TryGetComponent(out CameraController camController);
 
@@ -79,6 +80,4 @@ public class MissileController : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
-
-
 }

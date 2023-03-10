@@ -20,7 +20,7 @@ public class LeftGesture : GestureSO
 
         totalDirections /= (points.Count - 1);
 
-        if (totalDirections.normalized.x <= -0.7f && totalDistance > 0.2f)
+        if (totalDirections.normalized.x <= -0.7f)
         {
             if (totalDirections.normalized.y <= 0.5f && totalDirections.y >= -0.5f)
             {

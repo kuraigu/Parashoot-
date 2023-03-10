@@ -136,7 +136,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1.230310F
+  bundleVersion: 0.1.230310M
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -917,7 +917,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 2e660924-9143-47c7-83ae-b515c87ee3bd
   framebufferDepthMemorylessMode: 0

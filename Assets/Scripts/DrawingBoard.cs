@@ -12,6 +12,11 @@ public class DrawingBoard : MonoBehaviour
     [SerializeField]
     private float _timeToFade;
 
+    [SerializeField]
+    private float _holdTimeThreshold = 1f;
+
+    private Dictionary<int, float> _holdTimeTrackerDict = new Dictionary<int, float>();
+
     private Dictionary<int, LineDrawer> _lineDrawerDict = new Dictionary<int, LineDrawer>();
 
     //private LineDrawer _lineDrawer;
@@ -72,6 +77,17 @@ public class DrawingBoard : MonoBehaviour
 
         if (_isHeld)
         {
+            if (_holdTimeTrackerDict != null)
+            {
+                if (!_holdTimeTrackerDict.ContainsKey(0))
+                {
+                    _holdTimeTrackerDict.Add(0, 0f);
+                }
+
+                _holdTimeTrackerDict[0] += Time.deltaTime;
+                
+            }
+
             if (_lineDrawerDict.Count > 0)
             {
                 int lastIndex = _lineDrawerDict.Count - 1;
@@ -93,9 +109,17 @@ public class DrawingBoard : MonoBehaviour
                 int lastIndex = _lineDrawerDict.Count - 1;
                 if (_lineDrawerDict[lastIndex] != null)
                 {
-                    if (RecognizerManager.instance != null)
+                    if (_holdTimeTrackerDict != null)
                     {
-                        RecognizerManager.instance.CheckAllGestures(_lineDrawerDict[lastIndex].pointList);
+                        if (_holdTimeTrackerDict[0] >= _holdTimeThreshold)
+                        {
+                            if (RecognizerManager.instance != null)
+                            {
+                                RecognizerManager.instance.CheckAllGestures(_lineDrawerDict[lastIndex].pointList);
+                            }
+                        }
+
+                        _holdTimeTrackerDict[0] = 0f;
                     }
 
                     Destroy(_lineDrawerDict[lastIndex].gameObject, _timeToFade);
@@ -143,6 +167,13 @@ public class DrawingBoard : MonoBehaviour
                         _initialPosition = touch.position;
                     }
 
+                    if (!_holdTimeTrackerDict.ContainsKey(0))
+                    {
+                        _holdTimeTrackerDict.Add(touch.fingerId, 0f);
+                    }
+                    _holdTimeTrackerDict[touch.fingerId] += Time.deltaTime;
+            
+
                     Vector3 touchPosition = touch.position;
                     touchPosition.z = -(Camera.main.transform.position.z);
                     touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
@@ -150,11 +181,15 @@ public class DrawingBoard : MonoBehaviour
 
                     if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                     {
-                        if (RecognizerManager.instance != null)
+                        if(_holdTimeTrackerDict[touch.fingerId] >= _holdTimeThreshold)
+                        {
+                            if (RecognizerManager.instance != null)
                         {
                             RecognizerManager.instance.CheckAllGestures(lineDrawer.pointList);
                         }
+                        _holdTimeTrackerDict[touch.fingerId] = 0f;
 
+                        }
                         // Destroy the line drawer associated with this touch
                         Destroy(lineDrawer.gameObject, _timeToFade);
                         _lineDrawerDict.Remove(touch.fingerId);

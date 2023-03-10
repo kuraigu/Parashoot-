@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CursorManager : MonoBehaviour
 {
     private static CursorManager _instance;
 
     private bool _isHoveringUI;
+
+    private GraphicRaycaster _raycaster;
+    private PointerEventData _pointerEventData;
 
     public static CursorManager instance
     { get { return _instance; } }
@@ -23,34 +27,21 @@ public class CursorManager : MonoBehaviour
 
     void Update()
     {
-        if (SystemInfo.deviceType == DeviceType.Desktop)
+
+        _isHoveringUI = false;
+        if (EventSystem.current.IsPointerOverGameObject())
         {
-            _isHoveringUI = false;
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                _isHoveringUI = true;
-            }
+            _isHoveringUI = true;
         }
 
-        else
+        // Check if the user is touching the screen
+        if (Input.touchCount > 0)
         {
-            _isHoveringUI = false;
-
-            // Check if the user is touching the screen
-            if (Input.touchCount > 0)
+            for (int i = 0; i < Input.touchCount; i++)
             {
-                for (int i = 0; i < Input.touchCount; i++)
-                {
-                    var touch = Input.GetTouch(i);
-                    if (touch.phase == TouchPhase.Began)
-                    {
-                        if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-                        {
-                            _isHoveringUI = true;
-                            break; // exit the loop once a UI element is found
-                        }
-                    }
-                }
+                Touch touch = Input.GetTouch(i);
+
+                EventSystem.current.IsPointerOverGameObject(touch.fingerId);
             }
         }
     }

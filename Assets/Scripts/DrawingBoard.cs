@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DrawingBoard : MonoBehaviour
 {
@@ -52,7 +53,7 @@ public class DrawingBoard : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            if (CursorManager.instance != null && !CursorManager.instance.isHoveringUI)
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
                 if (!_isHeld)
                 {
@@ -85,7 +86,7 @@ public class DrawingBoard : MonoBehaviour
                 }
 
                 _holdTimeTrackerDict[0] += Time.deltaTime;
-                
+
             }
 
             if (_lineDrawerDict.Count > 0)
@@ -145,15 +146,19 @@ public class DrawingBoard : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began)
             {
-                if (CursorManager.instance != null)
+                if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
-                    if (!_lineDrawerDict.ContainsKey(touch.fingerId))
-                    {
-                        // Create a new line drawer and add it to the dictionary for this touch
-                        _lineDrawerDict[touch.fingerId] = Instantiate(_lineDrawerReference);
-                        _lineDrawerDict[touch.fingerId].transform.position = new Vector3(_lineDrawerDict[touch.fingerId].transform.position.x, _lineDrawerDict[touch.fingerId].transform.position.y + 1, 0f);
-                    }
+                    continue;
                 }
+
+                if (!_lineDrawerDict.ContainsKey(touch.fingerId))
+                {
+                    // Create a new line drawer and add it to the dictionary for this touch
+                    _lineDrawerDict[touch.fingerId] = Instantiate(_lineDrawerReference);
+                    _lineDrawerDict[touch.fingerId].transform.position = new Vector3(_lineDrawerDict[touch.fingerId].transform.position.x, _lineDrawerDict[touch.fingerId].transform.position.y + 1, 0f);
+                }
+
+                _initialPosition = touch.position;
             }
 
             if (_lineDrawerDict.ContainsKey(touch.fingerId))
@@ -162,17 +167,11 @@ public class DrawingBoard : MonoBehaviour
                 LineDrawer lineDrawer = _lineDrawerDict[touch.fingerId];
                 if (lineDrawer != null)
                 {
-                    if (touch.phase == TouchPhase.Began)
-                    {
-                        _initialPosition = touch.position;
-                    }
-
                     if (!_holdTimeTrackerDict.ContainsKey(0))
                     {
                         _holdTimeTrackerDict.Add(touch.fingerId, 0f);
                     }
                     _holdTimeTrackerDict[touch.fingerId] += Time.deltaTime;
-            
 
                     Vector3 touchPosition = touch.position;
                     touchPosition.z = -(Camera.main.transform.position.z);
@@ -181,13 +180,13 @@ public class DrawingBoard : MonoBehaviour
 
                     if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                     {
-                        if(_holdTimeTrackerDict[touch.fingerId] >= _holdTimeThreshold)
+                        if (_holdTimeTrackerDict[touch.fingerId] >= _holdTimeThreshold)
                         {
                             if (RecognizerManager.instance != null)
-                        {
-                            RecognizerManager.instance.CheckAllGestures(lineDrawer.pointList);
-                        }
-                        _holdTimeTrackerDict[touch.fingerId] = 0f;
+                            {
+                                RecognizerManager.instance.CheckAllGestures(lineDrawer.pointList);
+                            }
+                            _holdTimeTrackerDict[touch.fingerId] = 0f;
 
                         }
                         // Destroy the line drawer associated with this touch

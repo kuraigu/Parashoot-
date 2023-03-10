@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[System.Obsolete]
 public class CursorManager : MonoBehaviour
 {
     private static CursorManager _instance;
@@ -27,22 +28,5 @@ public class CursorManager : MonoBehaviour
 
     void Update()
     {
-
-        _isHoveringUI = false;
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            _isHoveringUI = true;
-        }
-
-        // Check if the user is touching the screen
-        if (Input.touchCount > 0)
-        {
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                Touch touch = Input.GetTouch(i);
-
-                EventSystem.current.IsPointerOverGameObject(touch.fingerId);
-            }
-        }
     }
 }

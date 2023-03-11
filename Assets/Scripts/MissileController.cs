@@ -35,18 +35,16 @@ public class MissileController : MonoBehaviour
     {
         if(other.gameObject == _target.gameObject)
         {
-            Destroy(this.gameObject, 10);
-            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
 
             if(_explosionEffect != null)
             {
                 GameObject explosion = Instantiate(_explosionEffect.gameObject);
 
                 explosion.transform.position = this.transform.position;
-                Destroy(explosion.gameObject, 10);
+                Destroy(explosion.gameObject, 3);
             }
 
-            
 
             Camera.main.TryGetComponent(out CameraController camController);
 
@@ -76,8 +74,7 @@ public class MissileController : MonoBehaviour
 
         else
         {
-            Destroy(this.gameObject, 10);
-            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
     }
 }

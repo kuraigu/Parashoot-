@@ -324,7 +324,7 @@ public class Enemy : MonoBehaviour
                 text = string.Format(text, _onKillScore.ToString());
 
                 Vector3 pos = this.transform.position - Vector3.one;
-                FloatingMessageManager.instance.SpawnFloatingTextControlPosition(text, pos);
+                FloatingMessageManager.instance.SpawnFloatingText(text);
             }
         }
 

@@ -167,7 +167,7 @@ public class DrawingBoard : MonoBehaviour
                 LineDrawer lineDrawer = _lineDrawerDict[touch.fingerId];
                 if (lineDrawer != null)
                 {
-                    if (!_holdTimeTrackerDict.ContainsKey(0))
+                    if (!_holdTimeTrackerDict.ContainsKey(touch.fingerId))
                     {
                         _holdTimeTrackerDict.Add(touch.fingerId, 0f);
                     }

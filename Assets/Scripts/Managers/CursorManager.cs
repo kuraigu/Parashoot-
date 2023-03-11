@@ -20,7 +20,6 @@ public class CursorManager : MonoBehaviour
     public bool isHoveringUI
     { get { return _isHoveringUI; } }
 
-
     void Awake()
     {
         _instance = this;

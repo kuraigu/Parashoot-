@@ -7,7 +7,7 @@ public class GenericBannerAd : MonoBehaviour
 {
     private BannerView _bannerView;
 
-    public string _adUnitId = "your-ad-unit-id-here";
+    private string _adUnitId = "your-ad-unit-id-here";
 
     void Start()
     {

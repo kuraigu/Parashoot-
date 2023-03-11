@@ -10,10 +10,14 @@ public class FloatingMessageManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _floatingText;
 
+    [System.Obsolete]
+    [SerializeField]
+    private float _spacing = 30.0f;
+
     private static FloatingMessageManager _instance;
 
-    public static FloatingMessageManager instance 
-    {get {return _instance;}}
+    public static FloatingMessageManager instance
+    { get { return _instance; } }
 
     private void Awake()
     {
@@ -25,26 +29,21 @@ public class FloatingMessageManager : MonoBehaviour
         SpawnFloatingText(message, 3.0f);
     }
 
-    public void SpawnFloatingText(string message, float duration=3.0f)
+    public void SpawnFloatingText(string message, float duration = 3.0f)
     {
-        if(_parent != null && _floatingText != null)
+        if (_parent != null && _floatingText != null)
         {
-            GameObject gameObject = Instantiate(_floatingText.gameObject, _parent.transform);
+            GameObject gameObject = new GameObject();
+            gameObject.transform.SetParent(_parent.transform, false);
+            RectTransform rect =  gameObject.AddComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(rect.sizeDelta.x, 30);
 
-            gameObject.GetComponent<TextMeshProUGUI>().text = message;
+            GameObject textGameObject = Instantiate(_floatingText.gameObject);
+            textGameObject.transform.SetParent(gameObject.transform, false);
 
-            Destroy(gameObject, duration);
-        }
-    }
+            //textGameObject.transform.position = gameObject.transform.position;
 
-    public void SpawnFloatingTextControlPosition(string message, Vector3 position, float duration=3.0f)
-    {
-        if(_parent != null && _floatingText != null)
-        {
-            GameObject gameObject = Instantiate(_floatingText.gameObject, _parent.transform);
-            gameObject.transform.position = Camera.main.WorldToScreenPoint(position);
-
-            gameObject.GetComponent<TextMeshProUGUI>().text = message;
+            textGameObject.GetComponent<TextMeshProUGUI>().text = message;
 
             Destroy(gameObject, duration);
         }

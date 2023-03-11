@@ -44,6 +44,7 @@ public class SetItemOnShop : MonoBehaviour
         {
             if (ShopManager.instance != null)
             {
+                _buyButton.onClick.RemoveAllListeners();
                 _buyButton.onClick.AddListener(() => Buy());
             }
         }
@@ -58,9 +59,9 @@ public class SetItemOnShop : MonoBehaviour
 
     private void Buy()
     {
+        ShopManager.instance.Reset();
         ShopManager.instance.IncreaseItem(_itemSO);
         ShopManager.instance.Buy();
-        //ShopManager.instance.Reset();
         UpdateValues();
     }
 

@@ -57,6 +57,8 @@ public class ShopManager : MonoBehaviour
                         string text = "Max amount for {0} will be reached";
                         text = string.Format(text, itemPurchase.item.itemName);
                         FloatingMessageManager.instance.SpawnFloatingText(text);
+
+                        Reset();
                     }
                 }
 

@@ -7,7 +7,6 @@ public class RespawnOnRewardedAds : MonoBehaviour
 {
     private RewardedAd _rewardedAd;
     private string _adUnitId = "your-rewarded-ad-unit-id-here";
-    private bool _adLoaded = false;
 
     [SerializeField]
     private GameObject _toClose;

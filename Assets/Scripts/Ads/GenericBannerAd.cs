@@ -14,7 +14,7 @@ public class GenericBannerAd : MonoBehaviour
         if(AdManager.instance != null)
         {
             if(AdManager.instance.isTesting)
-                _adUnitId = "ca-app-pub-2912355367336344/3484470317";
+                _adUnitId = "ca-app-pub-3940256099942544/6300978111";
         }
 
         // Initialize the Google Mobile Ads SDK.

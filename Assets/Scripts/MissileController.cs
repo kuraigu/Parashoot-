@@ -18,6 +18,11 @@ public class MissileController : MonoBehaviour
     private VisualEffect _explosionEffect;
     void Start()
     {
+        if(_explosionEffect != null)
+        {
+            _explosionEffect = Instantiate(_explosionEffect);
+            _explosionEffect.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -35,20 +40,20 @@ public class MissileController : MonoBehaviour
     {
         if(other.gameObject == _target.gameObject)
         {
-            Destroy(this.gameObject);
-
+        
             if(_explosionEffect != null)
             {
-                GameObject explosion = Instantiate(_explosionEffect.gameObject);
-
-                explosion.transform.position = this.transform.position;
-                Destroy(explosion.gameObject, 3);
+                _explosionEffect.gameObject.SetActive(true);
+                _explosionEffect.gameObject.transform.position = this.transform.position;
+                Destroy(_explosionEffect.gameObject, 3);
             }
 
 
             Camera.main.TryGetComponent(out CameraController camController);
 
             if(camController != null) camController.Shake();
+
+            Destroy(this.gameObject);
         }
 
         else return;
@@ -59,8 +64,6 @@ public class MissileController : MonoBehaviour
         _target = target;
     }
     
-
-
     public void FollowTarget()
     {
         if (_target != null && _rigidBody != null)

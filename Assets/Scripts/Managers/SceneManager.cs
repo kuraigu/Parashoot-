@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
@@ -19,6 +20,13 @@ public class SceneManager : MonoBehaviour
 
     [SerializeField]
     private float _crossFadeDuration = 0.3f;
+
+    [SerializeField]
+    private GameObject _loadingParent;
+    [SerializeField]
+    private GameObject _loadingHandle;
+
+    public UnityAction OnStartSceneChange;
 
     public static SceneManager instance
     { get { return _instance; } }
@@ -50,6 +58,8 @@ public class SceneManager : MonoBehaviour
 
     private IEnumerator ScreenTransition(string sceneName)
     {
+        OnStartSceneChange?.Invoke();
+
         float alpha;
 
         string previousSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
@@ -72,6 +82,25 @@ public class SceneManager : MonoBehaviour
         _crossFadeImage.canvasRenderer.SetAlpha(alpha);
         
         AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
+
+        while(!asyncLoad.isDone)
+        {
+            if(_loadingParent != null)
+            {
+                if(!_loadingParent.activeSelf) _loadingParent.transform.gameObject.SetActive(true);
+            }
+
+            if(_loadingHandle != null)
+            {
+                Vector3 newScale = _loadingHandle.transform.localScale;
+
+                newScale.x = Mathf.Clamp(asyncLoad.progress, 0f, 1f);
+
+                _loadingHandle.transform.localScale = newScale;
+            }
+            yield return null;
+        }
+
         //_crossFadeImage.gameObject.SetActive(false);
         while(asyncLoad.isDone && _crossFadeImage.canvasRenderer.GetAlpha() > 0f)
         {
@@ -79,7 +108,6 @@ public class SceneManager : MonoBehaviour
             _crossFadeImage.canvasRenderer.SetAlpha(alpha);
             yield return null;
         }
-
     }
 
     public void NormalizeTimeScale()

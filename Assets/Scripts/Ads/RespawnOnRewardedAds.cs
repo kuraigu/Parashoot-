@@ -16,7 +16,7 @@ public class RespawnOnRewardedAds : MonoBehaviour
         if (AdManager.instance != null)
         {
             if (AdManager.instance.isTesting)
-                _adUnitId = "ca-app-pub-2912355367336344/7695996306";
+                _adUnitId = "ca-app-pub-3940256099942544/5224354917";
         }
 
 

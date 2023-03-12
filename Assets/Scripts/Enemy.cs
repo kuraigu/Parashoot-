@@ -118,6 +118,12 @@ public class Enemy : MonoBehaviour
         }
 
         if (_animator != null) _animator.Play("Idle");
+
+        if(_hitGroundExplosion != null)
+        {
+            _hitGroundExplosion = Instantiate(_hitGroundExplosion);
+            _hitGroundExplosion.gameObject.SetActive(false);
+        }
     }
 
     private void OnDestroy()
@@ -210,7 +216,7 @@ public class Enemy : MonoBehaviour
 
             if (_hitGroundExplosion != null && _isDead)
             {
-                _hitGroundExplosion = Instantiate(_hitGroundExplosion);
+                _hitGroundExplosion.gameObject.SetActive(true);
                 _hitGroundExplosion.transform.position = this.transform.position;
                 Destroy(_hitGroundExplosion.gameObject, 2);
             }

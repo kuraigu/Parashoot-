@@ -69,7 +69,9 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _GlowColor: {r: 1.960784, g: 1.301961, b: 0.8235294, a: 0}
-    - _MainColor: {r: 0.04186543, g: 0.1509434, b: 0.061480384, a: 0}
+    - _MainColor: {r: 0.41162336, g: 0.6981132, b: 0.43394724, a: 1}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2291106628049190434
 MonoBehaviour:

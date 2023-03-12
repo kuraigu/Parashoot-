@@ -68,7 +68,7 @@ public class DataManager : MonoBehaviour
 
             public Settings()
             {
-                musicVolume = 1.0f;
+                musicVolume = 0.3f;
             }
 
 

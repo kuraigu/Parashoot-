@@ -105,6 +105,7 @@ public class SceneManager : MonoBehaviour
         alpha = 1f;
         _crossFadeImage.canvasRenderer.SetAlpha(alpha);
 
+        AsyncOperation asyncUnload = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
         AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
 
         while (!asyncLoad.isDone)
@@ -124,6 +125,7 @@ public class SceneManager : MonoBehaviour
             }
             yield return null;
         }
+
 
         //_crossFadeImage.gameObject.SetActive(false);
         while (asyncLoad.isDone && _crossFadeImage.canvasRenderer.GetAlpha() > 0f)

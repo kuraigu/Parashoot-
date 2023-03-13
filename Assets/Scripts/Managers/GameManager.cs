@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
         {
             if(DataManager.instance.data.firstTime)
             {
-                FloatingMessageManager.instance.SpawnFloatingText("Swipe based on the direction shown", 15);
-                FloatingMessageManager.instance.SpawnFloatingText("Consecutive misktakes mean GAME OVER", 15);
+                FloatingMessageManager.instance.SpawnFloatingText("<b><color=#FFE0A6>Swipe based on the direction shown</b>", 60);
+                FloatingMessageManager.instance.SpawnFloatingText("<b><color=#FFE0A6>Consecutive misktakes mean GAME OVER</b>", 60);
 
                 DataManager.instance.data.firstTime = false;
                 DataManager.instance.SaveData();

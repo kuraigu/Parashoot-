@@ -28,6 +28,7 @@ public class DataManager : MonoBehaviour
     [System.Serializable]
     public class Data
     {
+        public bool firstTime;
         public uint highScore;
         public uint totalScore;
         public Item[] items;
@@ -38,6 +39,8 @@ public class DataManager : MonoBehaviour
         {
             highScore = 0;
             totalScore = 0;
+
+            firstTime = true;
 
             settings = new Settings();
         }

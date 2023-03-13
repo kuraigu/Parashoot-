@@ -70,4 +70,20 @@ public class GameManager : MonoBehaviour
             DataManager.instance.LoadData();
         }
     }
+
+
+    private void Start()
+    {
+        if(DataManager.instance != null && FloatingMessageManager.instance != null && EnemyManager.instance != null)
+        {
+            if(DataManager.instance.data.firstTime)
+            {
+                FloatingMessageManager.instance.SpawnFloatingText("Swipe based on the direction shown", 15);
+                FloatingMessageManager.instance.SpawnFloatingText("Consecutive misktakes mean GAME OVER", 15);
+
+                DataManager.instance.data.firstTime = false;
+                DataManager.instance.SaveData();
+            }
+        }
+    }
 }

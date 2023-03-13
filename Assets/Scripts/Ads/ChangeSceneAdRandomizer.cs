@@ -14,6 +14,19 @@ public class ChangeSceneAdRandomizer : MonoBehaviour
 
     private InterstitialAd _interstitialAd;
 
+    public InterstitialAd interstitialAd
+    { get { return _interstitialAd; } }
+
+
+    private bool _adClosed;
+    private bool _adFailed;
+
+    public bool adClosed
+    { get { return _adClosed; } }
+
+    public bool adFailed
+    { get { return _adFailed; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +36,9 @@ public class ChangeSceneAdRandomizer : MonoBehaviour
             {
                 _adUnitId = "ca-app-pub-3940256099942544/1033173712"; ;
             }
+
+            else
+                _adUnitId = "ca-app-pub-2912355367336344/6328041912";
         }
 
         // Initialize the Google Mobile Ads SDK.
@@ -36,19 +52,7 @@ public class ChangeSceneAdRandomizer : MonoBehaviour
             //SceneManager.instance.OnStartSceneChange += OnStartSceneChange;
         }
 
-
-        if (DataManager.instance != null)
-        {
-            if (DataManager.instance.data.highScore > 0)
-            {
-                float random = UnityEngine.Random.Range(0.0f, 100.0f);
-
-                if (random <= _showChance)
-                {
-                    LoadAd();
-                }
-            }
-        }
+        LoadAd();
     }
 
     private void OnDestroy()
@@ -57,8 +61,12 @@ public class ChangeSceneAdRandomizer : MonoBehaviour
         {
             //SceneManager.instance.OnStartSceneChange -= OnStartSceneChange;
         }
-    }
 
+        if (_interstitialAd != null)
+        {
+            _interstitialAd.Destroy();
+        }
+    }
 
     private void LoadAd()
     {
@@ -75,30 +83,56 @@ public class ChangeSceneAdRandomizer : MonoBehaviour
             (InterstitialAd ad, LoadAdError error) =>
             {
                 _interstitialAd = ad;
+                //StartCoroutine(ShowAd());
 
-                StartCoroutine(ShowAd());
+                RegisterEventHandlers(_interstitialAd);
             }
         );
     }
 
-    private IEnumerator ShowAd()
+    private void RegisterEventHandlers(InterstitialAd ad)
     {
-        while (_interstitialAd != null && _interstitialAd.CanShowAd())
-        {
-            yield return null;
-
-
-            if (_interstitialAd != null && _interstitialAd.CanShowAd())
-            {
-                _interstitialAd.Show();
-            }
-
-        }
-
+        ad.OnAdFullScreenContentClosed += HandleOnAdClosed;
+        ad.OnAdFullScreenContentFailed += HandleOnAdFailedToLoad;
+        ad.OnAdClicked += HandleOnAdClosed;
     }
 
-    private void OnStartSceneChange()
+    private void HandleOnAdClosed()
     {
-        ShowAd();
+        _adClosed = true;
+        DebugHandler.Log("Ad Closed" + _adClosed);
+    }
+
+    private void HandleOnAdFailedToLoad(AdError error)
+    {
+        _adFailed = true;
+    }
+
+    public void ShowAd()
+    {
+        if (_interstitialAd.CanShowAd())
+        {
+            _interstitialAd.Show();
+        }
+    }
+
+    public bool CanShowAd()
+    {
+        if (DataManager.instance != null)
+        {
+            if (DataManager.instance.data.highScore > 0)
+            {
+                float random = UnityEngine.Random.Range(0.0f, 100.0f);
+
+                if (random <= _showChance)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        return false;
     }
 }

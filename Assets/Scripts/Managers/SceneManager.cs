@@ -26,6 +26,9 @@ public class SceneManager : MonoBehaviour
     [SerializeField]
     private GameObject _loadingHandle;
 
+    [SerializeField]
+    private ChangeSceneAdRandomizer changeSceneAd;
+
     public UnityAction OnStartSceneChange;
 
     public static SceneManager instance
@@ -64,6 +67,27 @@ public class SceneManager : MonoBehaviour
 
         string previousSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
+        if (changeSceneAd != null)
+        {
+            if (changeSceneAd.CanShowAd())
+            {
+                changeSceneAd.ShowAd();
+
+                float adTimeout = 0;
+
+                while (!changeSceneAd.adClosed || !changeSceneAd.adFailed)
+                {  
+                    adTimeout += Time.unscaledDeltaTime;
+
+                    if(adTimeout >= 30) break;
+                    if (changeSceneAd.adClosed) break;
+                    if (changeSceneAd.adFailed) break;
+                    yield return null;
+                }
+            }
+        }
+
+
         // Fade in the crossfade image
         _crossFadeImage.gameObject.SetActive(true);
         _crossFadeImage.canvasRenderer.SetAlpha(0f);
@@ -80,17 +104,17 @@ public class SceneManager : MonoBehaviour
         NormalizeTimeScale();
         alpha = 1f;
         _crossFadeImage.canvasRenderer.SetAlpha(alpha);
-        
+
         AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
 
-        while(!asyncLoad.isDone)
+        while (!asyncLoad.isDone)
         {
-            if(_loadingParent != null)
+            if (_loadingParent != null)
             {
-                if(!_loadingParent.activeSelf) _loadingParent.transform.gameObject.SetActive(true);
+                if (!_loadingParent.activeSelf) _loadingParent.transform.gameObject.SetActive(true);
             }
 
-            if(_loadingHandle != null)
+            if (_loadingHandle != null)
             {
                 Vector3 newScale = _loadingHandle.transform.localScale;
 
@@ -102,7 +126,7 @@ public class SceneManager : MonoBehaviour
         }
 
         //_crossFadeImage.gameObject.SetActive(false);
-        while(asyncLoad.isDone && _crossFadeImage.canvasRenderer.GetAlpha() > 0f)
+        while (asyncLoad.isDone && _crossFadeImage.canvasRenderer.GetAlpha() > 0f)
         {
             alpha -= (1 / _crossFadeDuration) * Time.unscaledDeltaTime;
             _crossFadeImage.canvasRenderer.SetAlpha(alpha);

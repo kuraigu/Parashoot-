@@ -15,12 +15,23 @@ public class GenericBannerAd : MonoBehaviour
         {
             if(AdManager.instance.isTesting)
                 _adUnitId = "ca-app-pub-3940256099942544/6300978111";
+
+            else 
+                 _adUnitId = "ca-app-pub-2912355367336344/3484470317"; // banner id
         }
 
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { });
 
         this.RequestBanner();
+    }
+
+    void OnDestroy()
+    {
+        if(_bannerView != null)
+        {
+            _bannerView.Destroy();
+        }
     }
 
 

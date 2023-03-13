@@ -45,6 +45,13 @@ public class FloatingMessageManager : MonoBehaviour
 
             textGameObject.GetComponent<TextMeshProUGUI>().text = message;
 
+            if(duration > 3.0f)
+            {
+                Animator animator = textGameObject.GetComponent<Animator>();
+
+                animator.enabled = false;
+            }
+
             Destroy(gameObject, duration);
         }
     }

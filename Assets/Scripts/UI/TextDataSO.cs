@@ -6,7 +6,7 @@ using UnityEngine;
 public class TextDataSO : ScriptableObject
 {
     [SerializeField]
-    [TextArea(50, 0)]
+    [TextArea(1, 10000)]
     private string _text;
 
     public string text 

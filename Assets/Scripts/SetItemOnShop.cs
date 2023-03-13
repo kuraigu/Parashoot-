@@ -15,6 +15,9 @@ public class SetItemOnShop : MonoBehaviour
     private TextMeshProUGUI _nameText;
 
     [SerializeField]
+    private TextMeshProUGUI _descriptionText;
+
+    [SerializeField]
     private TextMeshProUGUI _remainingText;
     private string _remainingTextFormat;
 
@@ -76,6 +79,10 @@ public class SetItemOnShop : MonoBehaviour
                 _nameText.text = _itemSO.itemName;
             }
 
+            if(_descriptionText != null)
+            {
+                _descriptionText.text = string.Format(_descriptionText.text, _itemSO.description);
+            }
 
             if (_inventoryText != null)
             {

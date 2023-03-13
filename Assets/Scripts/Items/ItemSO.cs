@@ -16,6 +16,9 @@ public class ItemSO : ScriptableObject
     [SerializeField]
     private int _maxCount;
 
+    [SerializeField]
+    private string _description = "N/A";
+
     public string itemName 
     {get {return _itemName;}}
 
@@ -27,6 +30,9 @@ public class ItemSO : ScriptableObject
 
     public int maxCount
     {get {return _maxCount;}}
+
+    public string description
+    {get {return _description;}}
 
     public virtual bool UseItem()
     {

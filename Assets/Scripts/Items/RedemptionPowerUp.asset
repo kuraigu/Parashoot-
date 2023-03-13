@@ -16,3 +16,4 @@ MonoBehaviour:
   _sprite: {fileID: 0}
   _cost: 10000
   _maxCount: 3
+  _description: Resets the accumulated incorrect gesture count to zero.

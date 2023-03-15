@@ -166,6 +166,8 @@ public class Enemy : MonoBehaviour
                         {
                             GameManager.instance.Pause();
                             EnemyManager.instance.gameOverUI.SetActive(true);
+
+                            return;
                         }
                     }
 
@@ -330,7 +332,11 @@ public class Enemy : MonoBehaviour
                 text = string.Format(text, _onKillScore.ToString());
 
                 Vector3 pos = this.transform.position - Vector3.one;
-                FloatingMessageManager.instance.SpawnFloatingText(text);
+
+                if(RecognizerManager.instance != null)
+                {
+                    RecognizerManager.instance.IncrementCombo();
+                }
             }
         }
 

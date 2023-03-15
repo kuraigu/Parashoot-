@@ -41,5 +41,48 @@ namespace FreeMatrix
                 return this;
             }
         }
+
+
+        public class GameObjectHelper
+        {
+            public static IEnumerator UnscaledTimeDestroyCoroutine(GameObject gameObject, float duration)
+            {
+                yield return new WaitForSecondsRealtime(duration);
+
+                GameObject.Destroy(gameObject);
+            }
+
+
+            public static IEnumerator UnscaledTimeSetActiveCoroutine(GameObject gameObject, float duration, bool value)
+            {
+                yield return new WaitForSecondsRealtime(duration);
+
+                if (gameObject != null)
+                {
+                    gameObject.SetActive(value);
+                }
+            }
+
+            [System.Serializable]
+            public class PrefabCache<T>
+            {
+                [SerializeField] private T _prefab;
+                [SerializeField] private T _instance;
+
+                public T prefab
+                {get {return _prefab;}}
+
+                public T instance 
+                {get {return _instance;} set {_instance = value;}}
+            }
+
+
+            [System.Serializable]
+            public class PrefabCacheList<T>
+            {
+                private T _prefab;
+                private List<T> _instanceList = new List<T>();
+            }
+        }
     }
 }

@@ -36,6 +36,9 @@ public class RecognizerManager : MonoBehaviour
 
     private Coroutine _jamCoroutine;
 
+    [Header("Combos")]
+    [SerializeField] private ComboTracker _comboTracker;
+
     public static RecognizerManager instance
     { get { return _instance; } }
     public List<GestureSO> gestureList
@@ -49,6 +52,7 @@ public class RecognizerManager : MonoBehaviour
 
     public bool hasGestureDetected
     { get { return _hasGestureDetected; } set { _hasGestureDetected = value; } }
+
 
     void Awake()
     {
@@ -77,6 +81,7 @@ public class RecognizerManager : MonoBehaviour
 
     public void CheckAllGestures(List<Vector2> points)
     {
+
         if (_allowGestures && points.Count >= 2)
         {
             List<Vector2> normalizedPoints = Recognizer.Utils.NormalizeGesture(points);
@@ -92,6 +97,7 @@ public class RecognizerManager : MonoBehaviour
 
             if (allowJamming && !_hasGestureDetected)
             {
+                _comboTracker.Reset();
                 _nothingDetected++;
 
                 if (FloatingMessageManager.instance != null)
@@ -99,6 +105,8 @@ public class RecognizerManager : MonoBehaviour
                     FloatingMessageManager.instance.SpawnFloatingText("<b><color=#ff4242>No Matching Gestures!</color></b>", 3.0f);
                 }
             }
+
+            _comboTracker.Display();
 
             _nothingDetected = Math.Clamp(_nothingDetected, 0, (uint)_incorrectGesturesThreshold);
 
@@ -218,6 +226,76 @@ public class RecognizerManager : MonoBehaviour
                     tempGameObject.SetActive(true);
                 }
             }
+        }
+    }
+
+
+    public void IncrementCombo()
+    {
+        _comboTracker.Increment();
+    }
+
+    [Serializable]
+    private class ComboTracker
+    {   
+        [SerializeField] private FreeMatrix.Utils.GameObjectHelper.PrefabCache<GameObject> _mainComboPrefabCache;
+
+        [SerializeField] private TextMeshProUGUI _comboText;
+
+        [SerializeField] private string _comboTextFormat;
+
+        [SerializeField] private uint _numOfCombo;
+
+        private uint _previousNumOfCombo;
+        private Coroutine setActiveCoroutine;
+
+        public FreeMatrix.Utils.GameObjectHelper.PrefabCache<GameObject> mainComboPrefabCache
+        {get {return _mainComboPrefabCache;}}
+
+        public void Initialize()
+        {
+            if(_mainComboPrefabCache != null)
+            {
+                if(_mainComboPrefabCache.instance != null)
+                {
+                    _mainComboPrefabCache.instance = Instantiate(_mainComboPrefabCache.prefab);
+                }
+            }
+        }
+
+
+        public void Display(float duration=2.0f)
+        {
+            if(_mainComboPrefabCache.instance != null && _numOfCombo > 0 && _numOfCombo != _previousNumOfCombo)
+            {
+                if(setActiveCoroutine != null)
+                {
+                    RecognizerManager.instance.StopCoroutine(setActiveCoroutine);
+                }
+
+                _previousNumOfCombo = _numOfCombo;
+                _mainComboPrefabCache.instance.SetActive(false);
+                _mainComboPrefabCache.instance.SetActive(true);
+                _comboText.text = String.Format(_comboTextFormat, _numOfCombo.ToString());
+                setActiveCoroutine = RecognizerManager.instance.StartCoroutine(FreeMatrix.Utils.GameObjectHelper.UnscaledTimeSetActiveCoroutine(_mainComboPrefabCache.instance, duration, false));
+            }
+
+            DebugHandler.Log("Current Combo: " + _numOfCombo.ToString());
+        }
+
+        public void Reset()
+        {
+            _numOfCombo = 0;
+        }
+
+
+        public void Increment()
+        {
+            _numOfCombo++;
+        }
+
+        public void Destroy(float duration = 0.0f)
+        {
         }
     }
 }

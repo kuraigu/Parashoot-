@@ -57,13 +57,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        // set the game's target frame rate to 300
+
         Application.targetFrameRate = 300;
-        // limit the frame rate to 60 if it's lower than 60
-        if (Application.targetFrameRate < 60)
-        {
-            Application.targetFrameRate = 60;
-        }
 
         if(DataManager.instance != null)
         {

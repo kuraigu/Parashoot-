@@ -52,7 +52,12 @@ public class FloatingMessageManager : MonoBehaviour
                 animator.enabled = false;
             }
 
-            Destroy(gameObject, duration);
+            if(Time.timeScale == 0)
+            {
+                StartCoroutine(FreeMatrix.Utils.GameObjectHelper.UnscaledTimeDestroyCoroutine(gameObject, duration));
+            }
+
+            else Destroy(gameObject, duration);
         }
     }
 }

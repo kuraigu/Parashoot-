@@ -22,13 +22,6 @@ public class RespawnOnRewardedAds : MonoBehaviour
                 _adUnitId = "ca-app-pub-2912355367336344/7695996306";
         }
 
-
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize((InitializationStatus initStatus) =>
-        {
-            // This callback is called once the MobileAds SDK is initialized.
-        });
-
         LoadRewardedAd();
     }
 

@@ -45,7 +45,7 @@ public class MissileController : MonoBehaviour
             {
                 _explosionEffect.gameObject.SetActive(true);
                 _explosionEffect.gameObject.transform.position = this.transform.position;
-                Destroy(_explosionEffect.gameObject, 3);
+                MissileManager.instance.StartCoroutine(FreeMatrix.Utils.GameObjectHelper.ScaledTimeSetActiveCoroutine(_explosionEffect.gameObject, 2.0f, false));
             }
 
 
@@ -53,7 +53,7 @@ public class MissileController : MonoBehaviour
 
             if(camController != null) camController.Shake();
 
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
 
         else return;
@@ -77,7 +77,7 @@ public class MissileController : MonoBehaviour
 
         else
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }

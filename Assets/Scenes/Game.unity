@@ -1288,7 +1288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &416617034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,7 +1712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40af717e891b384ca6320c18c559bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _missile: {fileID: 7692101972073811117, guid: 5940d23b2eba1924981fd88aabb83937, type: 3}
+  _missilePrefab: {fileID: 7692101972073811117, guid: 5940d23b2eba1924981fd88aabb83937, type: 3}
+  _poolSize: 30
 --- !u!1 &607590412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,7 +2725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _adUnitId: ad-unit
-  _showChance: 30
+  _showChance: 10
 --- !u!4 &884395884
 Transform:
   m_ObjectHideFlags: 0
@@ -5182,16 +5183,16 @@ MonoBehaviour:
     _min: 1
     _max: 0
     _current: 2
-  _timeChangeDuration: 2
-  _timeDecrementAmount: 0.015
+  _timeChangeDuration: 3
+  _timeDecrementAmount: 0.01
   _enemyToSpawnPerCycle:
     _min: 1
     _max: 2
     _current: 0
   _totalSpawnChances: 0
   _timeToSpawnBoss: 90
-  _allowPlayerDeath: 0
-  _spawnState: 0
+  _allowPlayerDeath: 1
+  _spawnState: 2
   _gameOverUI: {fileID: 809394929}
 --- !u!4 &1680079985 stripped
 Transform:

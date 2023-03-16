@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 [CreateAssetMenu(fileName = "Up Gesture", menuName = "Gestures/Up")]
 public class UpGesture : GestureSO
@@ -12,11 +13,11 @@ public class UpGesture : GestureSO
         Vector2 totalDirections = Vector2.zero;
         float totalDistance = 0f;
 
-        for (int i = 1; i < points.Count; i++)
+        Parallel.For(1, points.Count, i =>
         {
             totalDirections += points[i] - points[i - 1];
             totalDistance += Vector2.Distance(points[i], points[i - 1]);
-        }
+        });
 
         totalDirections /= (points.Count - 1);
 
@@ -34,4 +35,5 @@ public class UpGesture : GestureSO
         DebugHandler.Log("Not " + _gestureName);
         return false;
     }
+
 }

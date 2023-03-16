@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Events;
 
 public class RecognizerManager : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class RecognizerManager : MonoBehaviour
     [SerializeField]
     private int _incorrectGesturesThreshold;
 
+    private int _numOfCorrectGestures = 0;
+    private int _numOfCorrectGesturesThreshold = 20;
+
     private bool _allowJamming = false;
 
     private bool _hasGestureDetected = false;
@@ -35,6 +39,10 @@ public class RecognizerManager : MonoBehaviour
     private bool _allowGestures;
 
     private Coroutine _jamCoroutine;
+
+    #region EVENTS
+    public UnityAction<List<Vector2>> OnCheckAllGestures;
+    #endregion 
 
     [Header("Combos")]
     [SerializeField] private ComboTracker _comboTracker;
@@ -72,6 +80,14 @@ public class RecognizerManager : MonoBehaviour
         }
 
         ClearWrongGesturesContainer();
+
+        OnCheckAllGestures += HandleCheckAllGestures;
+    }
+
+
+    private void OnDestroy()
+    {
+        OnCheckAllGestures -= HandleCheckAllGestures;
     }
 
     public void Reset()
@@ -79,24 +95,26 @@ public class RecognizerManager : MonoBehaviour
 
     }
 
-    public void CheckAllGestures(List<Vector2> points)
+    private void HandleCheckAllGestures(List<Vector2> points)
     {
 
         if (_allowGestures && points.Count >= 2)
         {
-            List<Vector2> normalizedPoints = Recognizer.Utils.NormalizeGesture(points);
+            //List<Vector2> normalizedPoints = Recognizer.Utils.NormalizeGesture(points);
 
             foreach (GestureSO g in _gestureList)
             {
                 if (g.CheckSimilarity(points))
                 {
                     g.InvokeEvent();
+                    _numOfCorrectGestures++;
                     break;
                 }
             }
 
             if (allowJamming && !_hasGestureDetected)
             {
+                _numOfCorrectGestures = 0;
                 _comboTracker.Reset();
                 _nothingDetected++;
 
@@ -109,6 +127,11 @@ public class RecognizerManager : MonoBehaviour
             _comboTracker.Display();
 
             _nothingDetected = Math.Clamp(_nothingDetected, 0, (uint)_incorrectGesturesThreshold);
+
+            if(_numOfCorrectGestures >= _numOfCorrectGesturesThreshold)
+            {
+                _nothingDetected = 0;
+            }
 
             if (_nothingDetected > 0 && _allowJamming)
             {
@@ -130,16 +153,6 @@ public class RecognizerManager : MonoBehaviour
                     EnemyManager.instance.gameOverUI.SetActive(true);
                 }
             }
-
-            //if (_nothingDetected >= _incorrectGesturesThreshold && _allowJamming)
-            //{
-            //    DisableRecognition();
-            //    _jamCoroutine = StartCoroutine(AutomaticReenableTimer(_disableRecognitionDuration));
-            //}
-
-            //_allowJamming = false;
-
-            // Reset
         }
     }
 
@@ -166,7 +179,7 @@ public class RecognizerManager : MonoBehaviour
         _nothingDetected = 0;
     }
 
-
+    [System.Obsolete]
     private IEnumerator AutomaticReenableTimer(float timer)
     {
         float currentTimer = timer;
@@ -228,7 +241,6 @@ public class RecognizerManager : MonoBehaviour
             }
         }
     }
-
 
     public void IncrementCombo()
     {

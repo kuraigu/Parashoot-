@@ -7,37 +7,26 @@ using UnityEngine.VFX;
 public class Enemy : MonoBehaviour
 {
     [Header("Gesture Variables")]
-    [SerializeField]
-    private int _numOfGestures;
-    [SerializeField]
-    private int _currentIndex = 0;
-    [SerializeField]
-    private List<GestureSO> _gestureList = new List<GestureSO>();
+    [SerializeField] private int _numOfGestures;
+    [SerializeField] private int _currentIndex = 0;
+    [SerializeField] private List<GestureSO> _gestureList = new List<GestureSO>();
 
     [Header("Animation")]
     [SerializeField] private Animator _animator;
 
     [Header("Physics Variables")]
-    [SerializeField]
-    private Collider _collider;
-    [SerializeField]
-    private Rigidbody _rigidBody;
+    [SerializeField] private Collider _collider;
+    [SerializeField] private Rigidbody _rigidBody;
 
     [Header("UI Variables")]
-    [SerializeField]
-    private Canvas _canvas;
+    [SerializeField] private Canvas _canvas;
 
     [Header("Gameplay Variables")]
-    [SerializeField]
-    private bool _allowGesturesDestroy = false;
-    [SerializeField]
-    private EnemyGesturePanel _gesturePanel;
-    [SerializeField]
-    private Transform _gesturePanelPosition;
-    [SerializeField]
-    private float _spawnChance;
-    [SerializeField]
-    private uint _onKillScore;
+    [SerializeField] private bool _allowGesturesDestroy = false;
+    [SerializeField] private EnemyGesturePanel _gesturePanel;
+    [SerializeField] private Transform _gesturePanelPosition;
+    [SerializeField] private float _spawnChance;
+    [SerializeField] private uint _onKillScore;
 
     [Header("Ragdoll Variables")]
     private bool _isGestureSeen = false;
@@ -46,10 +35,8 @@ public class Enemy : MonoBehaviour
     private Vector3 _rotationRate;
     private Quaternion _deltaRotation;
     private Vector3 _rotationDestination;
-    [SerializeField]
-    private float _minRotationTo;
-    [SerializeField]
-    private float _maxRotationTo;
+    [SerializeField] private float _minRotationTo;
+    [SerializeField] private float _maxRotationTo;
 
     [Header("VFX")]
     [SerializeField] private VisualEffect _hitGroundExplosion;
@@ -64,8 +51,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject _parachute;
     [SerializeField] private Renderer _parachuteRenderer;
     [SerializeField] private float _fadeSpeed;
-
     [SerializeField] private List<Renderer> _childRendererList = new List<Renderer>();
+
 
     private bool _isDead = false;
 
@@ -110,6 +97,7 @@ public class Enemy : MonoBehaviour
             _gesturePanel = Instantiate(_gesturePanel, _canvas.transform);
             FollowGameObject();
             _gesturePanel.InitializePanel(_gestureList.ToArray());
+            _gesturePanel.gameObject.SetActive(true);
         }
 
         if (GameManager.instance != null)
@@ -119,7 +107,7 @@ public class Enemy : MonoBehaviour
 
         if (_animator != null) _animator.Play("Idle");
 
-        if(_hitGroundExplosion != null)
+        if (_hitGroundExplosion != null)
         {
             _hitGroundExplosion = Instantiate(_hitGroundExplosion);
             _hitGroundExplosion.gameObject.SetActive(false);
@@ -187,14 +175,20 @@ public class Enemy : MonoBehaviour
     {
         if (_gesturePanel != null)
         {
-            Destroy(_gesturePanel.gameObject, 5);
-            _gesturePanel.gameObject.SetActive(false);
+            Destroy(_gesturePanel.gameObject);
+           // _gesturePanel.gameObject.SetActive(false);
         }
 
         if (_lineRendererActive != null)
         {
-            Destroy(_lineRendererActive.gameObject, 5);
-            _lineRendererActive.gameObject.SetActive(false);
+            Destroy(_lineRendererActive.gameObject);
+            //_lineRendererActive.gameObject.SetActive(false);
+        }
+
+
+        if(_hitGroundExplosion.gameObject != null)
+        {
+            Destroy(_hitGroundExplosion);
         }
     }
 
@@ -325,19 +319,11 @@ public class Enemy : MonoBehaviour
         if (ScoreManager.instance != null)
         {
             ScoreManager.instance.AddScore(_onKillScore);
+        }
 
-            if(FloatingMessageManager.instance != null)
-            {
-                string text = "<color=green>+ {0}<b></color>";
-                text = string.Format(text, _onKillScore.ToString());
-
-                Vector3 pos = this.transform.position - Vector3.one;
-
-                if(RecognizerManager.instance != null)
-                {
-                    RecognizerManager.instance.IncrementCombo();
-                }
-            }
+        if (RecognizerManager.instance != null)
+        {
+            RecognizerManager.instance.IncrementCombo();
         }
 
         if (_rigidBody != null && _collider != null)
@@ -348,7 +334,8 @@ public class Enemy : MonoBehaviour
 
         if (_gesturePanel != null)
         {
-            Destroy(_gesturePanel.gameObject);
+            //Destroy(_gesturePanel.gameObject);
+            _gesturePanel.gameObject.SetActive(false);
         }
 
         if (GameManager.instance != null)
@@ -463,6 +450,6 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        Destroy(gameObject, 10);
+        Destroy(gameObject);
     }
 }

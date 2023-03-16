@@ -71,7 +71,7 @@ public class EnemyGesturePanel : MonoBehaviour
     private IEnumerator BlinkGestureImage()
     {
         _gestureImage.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.05f);
         _gestureImage.gameObject.SetActive(true);
     }
 }

@@ -5,25 +5,43 @@ using UnityEngine;
 public class MissileManager : MonoBehaviour
 {
     private static MissileManager _instance;
+    [SerializeField] private GameObject _missilePrefab;
+    private List<GameObject> _missilePool = new List<GameObject>();
 
     [SerializeField]
-    private GameObject _missile;
+    private int _poolSize = 10;
 
-    public static MissileManager instance
-    { get { return _instance; } }
+    private int _currentIndex = 0;
+
+    public static MissileManager instance { get { return _instance; } }
 
     private void Awake()
     {
         _instance = this;
+
+        InitializePool();
+    }
+
+    private void InitializePool()
+    {
+          // create the missile pool
+        _missilePool = new List<GameObject>();
+        for (int i = 0; i < _poolSize; i++)
+        {
+            GameObject missile = Instantiate(_missilePrefab);
+            missile.SetActive(false);
+            _missilePool.Add(missile);
+        }
     }
 
     public void SpawnMissile(GameObject target)
     {
-        // check if _missile prefab and target are not null
-        if (_missile != null && target != null)
+        // get a missile from the pool
+        GameObject missile = GetMissileFromPool();
+
+        // check if missile and target are not null
+        if (missile != null && target != null)
         {
-            // instantiate a new missile
-            GameObject newMissile = Instantiate(_missile);
             Vector3 newPos;
 
             // generate a random value for x-coordinate
@@ -33,9 +51,11 @@ public class MissileManager : MonoBehaviour
             newPos = Camera.main.ViewportToWorldPoint(new Vector3(xPos, yPos, -10f));
             newPos.z = 5f;
             //set the position of the new missile
-            newMissile.transform.position = newPos;
+            missile.transform.position = newPos;
+            missile.SetActive(true);
+
             // get the missile controller component
-            MissileController missileController = newMissile.GetComponent<MissileController>();
+            MissileController missileController = missile.GetComponent<MissileController>();
 
             // check if missile controller is not null
             if (missileController != null)
@@ -44,5 +64,34 @@ public class MissileManager : MonoBehaviour
                 missileController.SetTarget(target);
             }
         }
+    }
+
+    private GameObject GetMissileFromPool()
+    {
+        if (_missilePrefab != null)
+        {
+            if(_currentIndex >  _missilePool.Count) _currentIndex = 0;
+            // check if there is an inactive missile in the pool starting from currentIndex
+            if (_currentIndex < _missilePool.Count && !_missilePool[_currentIndex].activeInHierarchy)
+            {
+                GameObject missileTemp = _missilePool[_currentIndex];
+                _currentIndex++;
+                return missileTemp;
+            }
+
+            // if currentIndex is at the end of the list or no inactive missile is found, create a new one
+            GameObject missile = Instantiate(_missilePrefab);
+            missile.SetActive(false);
+            _missilePool.Add(missile);
+            _currentIndex = _missilePool.Count - 1;
+            return missile;
+        }
+
+        return null;
+    }
+
+    public void PutMissileBackInPool(GameObject missile)
+    {
+        missile.SetActive(false);
     }
 }

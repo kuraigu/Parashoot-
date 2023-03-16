@@ -7,7 +7,10 @@ public class GenericBannerAd : MonoBehaviour
 {
     private BannerView _bannerView;
 
+    [SerializeField]
     private string _adUnitId = "your-ad-unit-id-here";
+
+    private float _chance = 30.0f;
 
     void Start()
     {
@@ -20,9 +23,7 @@ public class GenericBannerAd : MonoBehaviour
                  _adUnitId = "ca-app-pub-2912355367336344/3484470317"; // banner id
         }
 
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize(initStatus => { });
-
+        
         this.RequestBanner();
     }
 
@@ -37,6 +38,13 @@ public class GenericBannerAd : MonoBehaviour
 
     void OnEnable()
     {
+        float indicator = UnityEngine.Random.Range(0.0f, 100f);
+
+        if(indicator > _chance)
+        {
+            return;
+        }
+
         if(this._bannerView != null)
         {
             this._bannerView.Show();

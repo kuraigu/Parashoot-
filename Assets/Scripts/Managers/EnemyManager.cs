@@ -53,19 +53,19 @@ public class EnemyManager : MonoBehaviour
 
     public enum SpawnState
     {
-        None, 
-        Enemy, 
+        None,
+        Enemy,
         Boss
     }
 
     public static EnemyManager instance
-    {get {return _instance;}}
+    { get { return _instance; } }
 
     public bool allowPlayerDeath
-    {get {return _allowPlayerDeath;}}
+    { get { return _allowPlayerDeath; } }
 
     public GameObject gameOverUI
-    {get {return _gameOverUI;}}
+    { get { return _gameOverUI; } }
 
     private void Awake()
     {
@@ -83,7 +83,7 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        switch(_spawnState)
+        switch (_spawnState)
         {
             default:
                 break;
@@ -99,7 +99,7 @@ public class EnemyManager : MonoBehaviour
 
             case SpawnState.Boss:
 
-                if(_boss == null || !_boss.gameObject.activeSelf)
+                if (_boss == null || !_boss.gameObject.activeSelf)
                 {
                     _enemyCoroutine = StartCoroutine(RunTimer());
                     _bossCoroutine = StartCoroutine(RunBossTimer());
@@ -113,16 +113,16 @@ public class EnemyManager : MonoBehaviour
 
     public void ClearAllEnemies()
     {
-        if(_enemyList != null)
+        if (_enemyList != null)
         {
-            foreach(Enemy enemy in _enemyList)
+            foreach (Enemy enemy in _enemyList)
             {
-                if(enemy!= null) Destroy(enemy.gameObject);
+                if (enemy != null) Destroy(enemy.gameObject);
             }
 
             _enemyList.Clear();
 
-            if(_boss != null) Destroy(_boss.gameObject);
+            if (_boss != null) Destroy(_boss.gameObject);
 
             StopCoroutine(_enemyCoroutine);
             StopCoroutine(_bossCoroutine);
@@ -131,7 +131,7 @@ public class EnemyManager : MonoBehaviour
             _bossCoroutine = StartCoroutine(RunBossTimer());
         }
 
-        if(RecognizerManager.instance != null)
+        if (RecognizerManager.instance != null)
         {
             RecognizerManager.instance.DisallowJamming();
         }
@@ -143,7 +143,7 @@ public class EnemyManager : MonoBehaviour
     /// <author>Innoh Reloza</author>
     private void GetTotalSpawnChance()
     {
-        foreach(Enemy enemy in _enemyListReference)
+        foreach (Enemy enemy in _enemyListReference)
         {
             _totalSpawnChances += enemy.spawnChance;
         }
@@ -195,14 +195,20 @@ public class EnemyManager : MonoBehaviour
     /// <author>Innoh Reloza</author>
     private IEnumerator RunTimer()
     {
-        while(true)
-        {
-            yield return new WaitForSeconds(_timeToSpawnEnemy.current);
+        float timer = 0f;
 
-            SpawnEnemy();
+        while (true)
+        {
+            timer += Time.deltaTime;
+            if (timer >= _timeToSpawnEnemy.current)
+            {
+                SpawnEnemy();
+                timer = 0f;
+            }
+
+            yield return null;
         }
     }
-
 
     /// <summary>
     /// This private IEnumerator function, named "DecrementTimer", is used to decrement the timer of the class by a specified duration over time.
@@ -238,16 +244,20 @@ public class EnemyManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator RunBossTimer()
     {
-        // Wait for the specified amount of time
         yield return new WaitForSeconds(_timeToSpawnBoss);
 
-        StopCoroutine(_enemyCoroutine);
-        StopCoroutine(_bossCoroutine);
+        if (_enemyCoroutine != null)
+        {
+            StopCoroutine(_enemyCoroutine);
+        }
 
-        // Spawn the boss
-        SpawnBoss();     
+        if (_bossCoroutine != null)
+        {
+            StopCoroutine(_bossCoroutine);
+        }
+
+        SpawnBoss();
     }
-
 
     /// <summary>
     /// Spawns the boss if spawning is allowed
@@ -302,7 +312,7 @@ public class EnemyManager : MonoBehaviour
             // Randomizes the number of enemy to spawn per spawning cycle
             uint numOfEnemiesToSpawn = (uint)UnityEngine.Random.Range(_enemyToSpawnPerCycle.min, _enemyToSpawnPerCycle.max);
 
-            for(uint i = 0; i < numOfEnemiesToSpawn; i++)
+            for (uint i = 0; i < numOfEnemiesToSpawn; i++)
             {
                 // Create an instance of the enemy using the GetBySpawnChance method
                 Enemy enemy = Instantiate(GetBySpawnChance(), Vector3.zero, Quaternion.identity);
@@ -356,12 +366,12 @@ public class EnemyManager : MonoBehaviour
     /// <param name="newPos">Vector3 representing the position to check</param>
     /// <returns>True if the position is close, False otherwise</returns>
     private bool IsPositionCloseToLast(Vector3 newPos)
+    {
+        if (Mathf.Abs(_lastEnemyXPosition - newPos.x) < 2f)
         {
-            if (Mathf.Abs(_lastEnemyXPosition - newPos.x) < 2f)
-            {
-                return true;
-            }
-
-            return false;
+            return true;
         }
+
+        return false;
+    }
 }

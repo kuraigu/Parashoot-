@@ -41,11 +41,7 @@ public class ChangeSceneAdRandomizer : MonoBehaviour
                 _adUnitId = "ca-app-pub-2912355367336344/6328041912";
         }
 
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.Initialize((InitializationStatus initStatus) =>
-        {
-            // This callback is called once the MobileAds SDK is initialized.
-        });
+
 
         if (SceneManager.instance != null)
         {

@@ -63,6 +63,16 @@ namespace FreeMatrix
                 }
             }
 
+            public static IEnumerator ScaledTimeSetActiveCoroutine(GameObject gameObject, float duration, bool value)
+            {
+                yield return new WaitForSeconds(duration);
+
+                if (gameObject != null)
+                {
+                    gameObject.SetActive(value);
+                }
+            }
+
             [System.Serializable]
             public class PrefabCache<T>
             {
@@ -70,10 +80,10 @@ namespace FreeMatrix
                 [SerializeField] private T _instance;
 
                 public T prefab
-                {get {return _prefab;}}
+                { get { return _prefab; } }
 
-                public T instance 
-                {get {return _instance;} set {_instance = value;}}
+                public T instance
+                { get { return _instance; } set { _instance = value; } }
             }
 
 

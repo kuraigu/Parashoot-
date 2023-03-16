@@ -37,6 +37,12 @@ public class LineDrawer : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        _lineRenderer.positionCount = 0;
+
+        _pointList.Clear();
+    }
 
     private bool IsLineRendererNotNull()
     {

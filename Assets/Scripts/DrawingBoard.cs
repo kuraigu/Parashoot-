@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using System.Threading;
+using System.Threading.Tasks;
 public class DrawingBoard : MonoBehaviour
 {
     private bool _isHeld;
@@ -74,31 +75,21 @@ public class DrawingBoard : MonoBehaviour
                     _lineDrawerDict[newIndex].transform.position = new Vector3(_lineDrawerDict[newIndex].transform.position.x, _lineDrawerDict[newIndex].transform.position.y + 1, 0f);
                 }
             }
-        }
 
-        if (_isHeld)
-        {
-            if (_holdTimeTrackerDict != null)
+            if (_isHeld)
             {
-                if (!_holdTimeTrackerDict.ContainsKey(0))
+
+                if (_lineDrawerDict.Count > 0)
                 {
-                    _holdTimeTrackerDict.Add(0, 0f);
-                }
+                    int lastIndex = _lineDrawerDict.Count - 1;
+                    if (_lineDrawerDict[lastIndex] != null)
+                    {
+                        Vector3 mousePosition = Input.mousePosition;
+                        mousePosition.z = -(Camera.main.transform.position.z);
 
-                _holdTimeTrackerDict[0] += Time.deltaTime;
-
-            }
-
-            if (_lineDrawerDict.Count > 0)
-            {
-                int lastIndex = _lineDrawerDict.Count - 1;
-                if (_lineDrawerDict[lastIndex] != null)
-                {
-                    Vector3 mousePosition = Input.mousePosition;
-                    mousePosition.z = -(Camera.main.transform.position.z);
-
-                    mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-                    _lineDrawerDict[lastIndex].UpdateLine(mousePosition);
+                        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                        _lineDrawerDict[lastIndex].UpdateLine(mousePosition);
+                    }
                 }
             }
         }
@@ -110,18 +101,13 @@ public class DrawingBoard : MonoBehaviour
                 int lastIndex = _lineDrawerDict.Count - 1;
                 if (_lineDrawerDict[lastIndex] != null)
                 {
-                    if (_holdTimeTrackerDict != null)
-                    {
-                        if (_holdTimeTrackerDict[0] >= _holdTimeThreshold)
-                        {
-                            if (RecognizerManager.instance != null)
-                            {
-                                RecognizerManager.instance.CheckAllGestures(_lineDrawerDict[lastIndex].pointList);
-                            }
-                        }
 
-                        _holdTimeTrackerDict[0] = 0f;
+                    if (RecognizerManager.instance != null)
+                    {
+                        //RecognizerManager.instance.CheckAllGestures(_lineDrawerDict[lastIndex].pointList);
+                        RecognizerManager.instance.OnCheckAllGestures?.Invoke(_lineDrawerDict[lastIndex].pointList);
                     }
+
 
                     Destroy(_lineDrawerDict[lastIndex].gameObject, _timeToFade);
                     _lineDrawerDict.Remove(lastIndex);
@@ -136,7 +122,7 @@ public class DrawingBoard : MonoBehaviour
     }
 
 
-    void TouchControl()
+    private void TouchControl()
     {
         int numOfTouches = Input.touchCount;
 
@@ -151,28 +137,18 @@ public class DrawingBoard : MonoBehaviour
                     continue;
                 }
 
-                if (!_lineDrawerDict.ContainsKey(touch.fingerId))
-                {
-                    // Create a new line drawer and add it to the dictionary for this touch
-                    _lineDrawerDict[touch.fingerId] = Instantiate(_lineDrawerReference);
-                    _lineDrawerDict[touch.fingerId].transform.position = new Vector3(_lineDrawerDict[touch.fingerId].transform.position.x, _lineDrawerDict[touch.fingerId].transform.position.y + 1, 0f);
-                }
+                // Create a new line drawer and add it to the dictionary for this touch
+                _lineDrawerDict[touch.fingerId] = Instantiate(_lineDrawerReference);
+                _lineDrawerDict[touch.fingerId].transform.position = new Vector3(_lineDrawerDict[touch.fingerId].transform.position.x, _lineDrawerDict[touch.fingerId].transform.position.y + 1, 0f);
 
                 _initialPosition = touch.position;
             }
 
-            if (_lineDrawerDict.ContainsKey(touch.fingerId))
+            if (_lineDrawerDict.TryGetValue(touch.fingerId, out LineDrawer lineDrawer))
             {
                 // Update the line drawer associated with this touch
-                LineDrawer lineDrawer = _lineDrawerDict[touch.fingerId];
                 if (lineDrawer != null)
                 {
-                    if (!_holdTimeTrackerDict.ContainsKey(touch.fingerId))
-                    {
-                        _holdTimeTrackerDict.Add(touch.fingerId, 0f);
-                    }
-                    _holdTimeTrackerDict[touch.fingerId] += Time.deltaTime;
-
                     Vector3 touchPosition = touch.position;
                     touchPosition.z = -(Camera.main.transform.position.z);
                     touchPosition = Camera.main.ScreenToWorldPoint(touchPosition);
@@ -180,15 +156,12 @@ public class DrawingBoard : MonoBehaviour
 
                     if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
                     {
-                        if (_holdTimeTrackerDict[touch.fingerId] >= _holdTimeThreshold)
+                        if (RecognizerManager.instance != null)
                         {
-                            if (RecognizerManager.instance != null)
-                            {
-                                RecognizerManager.instance.CheckAllGestures(lineDrawer.pointList);
-                            }
-                            _holdTimeTrackerDict[touch.fingerId] = 0f;
-
+                            //RecognizerManager.instance.CheckAllGestures(lineDrawer.pointList);
+                            RecognizerManager.instance.OnCheckAllGestures?.Invoke(lineDrawer.pointList);
                         }
+
                         // Destroy the line drawer associated with this touch
                         Destroy(lineDrawer.gameObject, _timeToFade);
                         _lineDrawerDict.Remove(touch.fingerId);

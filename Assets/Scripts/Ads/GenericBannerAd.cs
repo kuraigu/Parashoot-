@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 
+
+[System.Obsolete]
 public class GenericBannerAd : MonoBehaviour
 {
     private BannerView _bannerView;
@@ -24,7 +26,7 @@ public class GenericBannerAd : MonoBehaviour
         }
 
         
-        this.RequestBanner();
+        //this.RequestBanner();
     }
 
     void OnDestroy()
@@ -38,7 +40,7 @@ public class GenericBannerAd : MonoBehaviour
 
     void OnEnable()
     {
-        float indicator = UnityEngine.Random.Range(0.0f, 100f);
+        /**float indicator = UnityEngine.Random.Range(0.0f, 100f);
 
         if(indicator > _chance)
         {
@@ -48,15 +50,15 @@ public class GenericBannerAd : MonoBehaviour
         if(this._bannerView != null)
         {
             this._bannerView.Show();
-        }
+        }**/
     }
 
     void OnDisable()
     {
-        if(this._bannerView != null)
+        /**if(this._bannerView != null)
         {
             this._bannerView.Hide();
-        }
+        }**/
     }
 
     private void RequestBanner()
